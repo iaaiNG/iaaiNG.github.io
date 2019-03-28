@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if(!sessionStorage['password']){
+              sessionStorage['password'] = prompt('请输入文章密码')
+            }
+            if (sessionStorage['password'] !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://iaaing.github.io"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是模型？  通过主观意识借助实体或者虚拟表现构成客观阐述形态结构的一种表达目的的物件（物件并不等于物体，不局限于实体与虚拟、不限于平面与立体）。（copy百度百科）  很多文章把事件流也称做事件模型，我觉得不贴切。  模型应该是一个可以想象的物件。而其文中解释的却是事件由监听到触发的过程。所以称之为模型，让人难以理解。称之为流，更为贴切。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件流和事件处理机制">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/index.html">
+<meta property="og:site_name" content="iaaiNG的博客">
+<meta property="og:description" content="什么是模型？  通过主观意识借助实体或者虚拟表现构成客观阐述形态结构的一种表达目的的物件（物件并不等于物体，不局限于实体与虚拟、不限于平面与立体）。（copy百度百科）  很多文章把事件流也称做事件模型，我觉得不贴切。  模型应该是一个可以想象的物件。而其文中解释的却是事件由监听到触发的过程。所以称之为模型，让人难以理解。称之为流，更为贴切。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/2.jpg">
+<meta property="og:updated_time" content="2019-03-26T15:43:53.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件流和事件处理机制">
+<meta name="twitter:description" content="什么是模型？  通过主观意识借助实体或者虚拟表现构成客观阐述形态结构的一种表达目的的物件（物件并不等于物体，不局限于实体与虚拟、不限于平面与立体）。（copy百度百科）  很多文章把事件流也称做事件模型，我觉得不贴切。  模型应该是一个可以想象的物件。而其文中解释的却是事件由监听到触发的过程。所以称之为模型，让人难以理解。称之为流，更为贴切。">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/">
+
+
+
+
+
+  <title>事件流和事件处理机制 | iaaiNG的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iaaiNG的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">死亡如风，常伴吾身！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/14-事件模型和事件处理机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iaaiNG">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iaaiNG的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">事件流和事件处理机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T12:25:02+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-26T23:43:53+08:00">
+                2019-03-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>什么是模型？</p>
+</blockquote>
+<p>通过主观意识借助实体或者虚拟表现构成客观阐述形态结构的一种表达目的的物件（物件并不等于物体，不局限于实体与虚拟、不限于平面与立体）。（copy百度百科）</p>
+<blockquote>
+<p>很多文章把<strong>事件流</strong>也称做<strong>事件模型</strong>，我觉得不贴切。</p>
+</blockquote>
+<p>模型应该是一个可以想象的物件。而其文中解释的却是事件由监听到触发的过程。所以称之为模型，让人难以理解。称之为流，更为贴切。</p>
+<a id="more"></a>
+<h1>一、注册事件监听器</h1>
+<p>有三种方式可以为DOM元素注册事件处理函数。</p>
+<h2 id="1-html-属性"><a class="header-anchor" href="#1-html-属性"></a>(1) HTML 属性</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span> onclick=<span class="string">"doSomething()"</span>&gt;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">btn.setAttribute(<span class="string">'onclick'</span>, <span class="string">'doSomething()'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用这个方法指定的监听代码，只会在冒泡阶段触发。</li>
+</ul>
+<h2 id="2-dom-元素属性"><a class="header-anchor" href="#2-dom-元素属性"></a>(2) DOM 元素属性</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = doSomethig</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用这个方法指定的监听函数，也是只会在冒泡阶段触发。</li>
+</ul>
+<h2 id="3-eventtarget-addeventlistener"><a class="header-anchor" href="#3-eventtarget-addeventlistener"></a>(3) EventTarget.addEventListener</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, doSomething, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所有 DOM 节点实例都有addEventListener方法，用来为该节点定义事件的监听函数。</li>
+</ul>
+<h2 id="4-小结"><a class="header-anchor" href="#4-小结"></a>(4) 小结</h2>
+<ol>
+<li>第一种方法，违反了HTML与JS代码相分离的原则，将两者写在一起，不利于代码分工，因此不推荐使用。</li>
+<li>第二种方法的缺点在于，同一个事件只能定义一个监听函数，也就是说，如果定义两次onclick属性，后一次定义会覆盖前一次。因此，也不推荐使用。</li>
+<li>第三种EventTarget.addEventListener是推荐的指定监听函数的方法。它有如下优点：
+<ul>
+<li>同一个事件可以添加多个监听函数。</li>
+<li>能够指定在哪个阶段（捕获阶段还是冒泡阶段）触发监听函数。</li>
+<li>除了 DOM 节点，其他对象（比如window、XMLHttpRequest等）也有这个接口，它等于是整个 JavaScript 统一的监听函数接口。</li>
+</ul>
+</li>
+<li>三种监听函数内部的this指向触发事件的那个元素节点。</li>
+</ol>
+<h1>二、事件的传播</h1>
+<h2 id="1-一个事件发生后-会在子元素和父元素之间传播-propagation-这种传播分成三个阶段"><a class="header-anchor" href="#1-一个事件发生后-会在子元素和父元素之间传播-propagation-这种传播分成三个阶段"></a>(1) 一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</h2>
+<ul>
+<li>第一阶段：从window对象传导到目标节点（上层传到底层），称为“捕获阶段”（capture phase）。</li>
+<li>第二阶段：在目标节点上触发，称为“目标阶段”（target phase）。</li>
+<li>第三阶段：从目标节点传导回window对象（从底层传回上层），称为“冒泡阶段”（bubbling phase）。</li>
+</ul>
+<h2 id="2-dom事件流在dom树中调度的事件的图形表示"><a class="header-anchor" href="#2-dom事件流在dom树中调度的事件的图形表示"></a>(2) DOM事件流在DOM树中调度的事件的图形表示</h2>
+<div style="display:flex">
+  <img src="/2019/03/26/14-事件模型和事件处理机制/1.png" style="height:500px">
+  <img src="/2019/03/26/14-事件模型和事件处理机制/2.jpg">
+</div>
+<h1>三、事件的代理</h1>
+<p>利用事件传播<strong>冒泡阶段</strong>的特点，可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>);</span><br><span class="line">ul.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.target.tagName.toLowerCase() === <span class="string">'li'</span>) &#123;</span><br><span class="line">    <span class="comment">// some code</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="1-利用事件对象的stoppropagation方法-阻止事件传播"><a class="header-anchor" href="#1-利用事件对象的stoppropagation方法-阻止事件传播"></a>(1) 利用事件对象的stopPropagation方法，阻止事件传播</h2>
+<ul>
+<li>捕获阶段阻止</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 事件传播到 p 元素后，就不再向下传播了</span></span><br><span class="line">p.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.stopPropagation();</span><br><span class="line">&#125;, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>冒泡阶段阻止</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 事件冒泡到 p 元素后，就不再向上冒泡了</span></span><br><span class="line">p.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.stopPropagation();</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-利用事件对象的stopimmediatepropagation方法-彻底取消事件-就像没发生一样"><a class="header-anchor" href="#2-利用事件对象的stopimmediatepropagation方法-彻底取消事件-就像没发生一样"></a>(2) 利用事件对象的stopImmediatePropagation方法，彻底取消事件，就像没发生一样</h2>
+<p>stopPropagation方法只能阻止这个事件的传播，不会阻止该事件触发节点的其他相同事件的监听函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">p.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  event.stopImmediatePropagation();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 不会被触发</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="3-事件代理优缺点"><a class="header-anchor" href="#3-事件代理优缺点"></a>(3) 事件代理优缺点</h2>
+<h3 id="优点"><a class="header-anchor" href="#优点"></a>优点</h3>
+<ul>
+<li>减少事件注册，节省内存。比如，
+<ul>
+<li>在table上代理所有td的click事件。</li>
+<li>在ul上代理所有li的click事件。</li>
+</ul>
+</li>
+<li>简化了dom节点更新时，相应事件的更新。比如
+<ul>
+<li>不用在新添加的li上绑定click事件。</li>
+<li>当删除某个li时，不用移解绑上面的click事件。</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺点"><a class="header-anchor" href="#缺点"></a>缺点</h3>
+<ul>
+<li>事件委托基于冒泡，对于不冒泡的事件不支持。</li>
+<li>层级过多，冒泡过程中，可能会被某层阻止掉。</li>
+<li>理论上委托会导致浏览器频繁调用处理函数，虽然很可能不需要处理。所以建议就近委托，比如在table上代理td，而不是在document上代理td。</li>
+<li>把所有事件都用代理就可能会出现事件误判。比如，在document中代理了所有button的click事件，另外的人在引用改js时，可能不知道，造成单击button触发了两个click事件。</li>
+</ul>
+<h1>四、EventTarget 接口</h1>
+<p>DOM 的事件操作（监听和触发），都定义在EventTarget接口。所有节点对象都部署了这个接口，其他一些需要事件通信的浏览器内置对象（比如，XMLHttpRequest、AudioNode、AudioContext）也部署了这个接口。</p>
+<blockquote>
+<p>该接口主要提供三个实例方法：</p>
+</blockquote>
+<ul>
+<li>addEventListener：绑定事件的监听函数</li>
+<li>removeEventListener：移除事件的监听函数</li>
+<li>dispatchEvent：触发事件</li>
+</ul>
+<h2 id="1-target-addeventlistener-type-listener-usecapture"><a class="header-anchor" href="#1-target-addeventlistener-type-listener-usecapture"></a>(1) target.addEventListener(type, listener[, useCapture]);</h2>
+<p><code>EventTarget.addEventListener()</code>用于在当前节点或对象上，定义一个特定事件的监听函数。一旦这个事件发生，就会执行监听函数。该方法没有返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, doSomething, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="该方法接受三个参数"><a class="header-anchor" href="#该方法接受三个参数"></a>该方法接受三个参数。</h3>
+<ul>
+<li>type：事件名称，大小写敏感。</li>
+<li>listener：监听函数。事件发生时，会调用该监听函数。</li>
+<li>useCapture：(可选)布尔值，表示监听函数是否在捕获阶段（capture）触发，默认为false（监听函数只在冒泡阶段被触发）。</li>
+</ul>
+<h3 id="关于参数-有两个地方需要注意"><a class="header-anchor" href="#关于参数-有两个地方需要注意"></a>关于参数，有两个地方需要注意。</h3>
+<ol>
+<li>
+<p>第二个参数除了监听函数，还可以是一个具有handleEvent方法的对象。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(<span class="string">'click'</span>, &#123;</span><br><span class="line">  handleEvent: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'click'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>其次，第三个参数除了布尔值useCapture，还可以是一个属性配置对象。该对象有以下属性。</p>
+</li>
+</ol>
+<ul>
+<li>capture：布尔值，表示该事件是否在捕获阶段触发监听函数。</li>
+<li>once：布尔值，表示监听函数是否只触发一次，然后就自动移除。</li>
+<li>passive：布尔值，表示监听函数不会调用事件的preventDefault方法。如果监听函数调用了，浏览器将忽略这个要求，并在监控台输出一行警告。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 只执行一次的代码</span></span><br><span class="line">  &#125;, &#123;<span class="attr">once</span>: <span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="监听函数内部的this-指向当前事件所在的那个对象"><a class="header-anchor" href="#监听函数内部的this-指向当前事件所在的那个对象"></a>监听函数内部的this，指向当前事件所在的那个对象</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span> === btn   <span class="comment">// true</span></span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-eventtarget-removeeventlistener"><a class="header-anchor" href="#2-eventtarget-removeeventlistener"></a>(2) EventTarget.removeEventListener()</h2>
+<p><code>EventTarget.removeEventListener</code>方法用来移除<code>addEventListener</code>方法添加的事件监听函数。该方法没有返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div.addEventListener(<span class="string">'click'</span>, listener, <span class="literal">false</span>);</span><br><span class="line">div.removeEventListener(<span class="string">'click'</span>, listener, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p><code>removeEventListener</code>方法的参数，必须与<code>addEventListener</code>方法完全一致。它的第一个参数“事件类型”，大小写敏感。</p>
+<h2 id="3-eventtarget-dispatchevent"><a class="header-anchor" href="#3-eventtarget-dispatchevent"></a>(3) EventTarget.dispatchEvent()</h2>
+<p><code>EventTarget.dispatchEvent</code>方法在当前节点上触发指定事件，从而触发监听函数的执行。<br>
+该方法返回一个布尔值，只要有一个监听函数调用了Event.preventDefault()，则返回值为false，否则为true。</p>
+<h3 id="dispatchevent方法的参数是一个event对象的实例"><a class="header-anchor" href="#dispatchevent方法的参数是一个event对象的实例"></a>dispatchEvent方法的参数是一个<a href="https://wangdoc.com/javascript/events/event.html" target="_blank" rel="noopener">Event对象</a>的实例</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">para.addEventListener(<span class="string">'click'</span>, hello, <span class="literal">false</span>);</span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> Event(<span class="string">'click'</span>);</span><br><span class="line">para.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h1>五、Event 对象</h1>
+<p>事件发生以后，会产生一个事件对象，作为参数传给监听函数。浏览器原生提供一个Event对象，所有的事件都是这个对象的实例，或者说继承了Event.prototype对象。</p>
+<h2 id="1-event对象本身就是一个构造函数-可以用来生成新的实例"><a class="header-anchor" href="#1-event对象本身就是一个构造函数-可以用来生成新的实例"></a>(1) Event对象本身就是一个构造函数，可以用来生成新的实例。</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> Event(type, options);</span><br></pre></td></tr></table></figure>
+<h3 id="event构造函数接受两个参数"><a class="header-anchor" href="#event构造函数接受两个参数"></a>Event构造函数接受两个参数</h3>
+<ul>
+<li><strong>type：</strong> 是字符串，表示事件的名称</li>
+<li><strong>options：</strong> 是一个对象，表示事件对象的配置。该对象主要有下面两个属性。
+<ul>
+<li>bubbles：布尔值，可选，默认为false，表示事件对象是否冒泡。</li>
+<li>cancelable：布尔值，可选，默认为false，表示事件是否可以被取消，即能否用Event.preventDefault()取消这个事件。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意，如果不是显式指定bubbles属性为true，生成的事件就只能在“捕获阶段”触发监听函数。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HTML 代码为</span></span><br><span class="line"><span class="comment">// &lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>);</span><br><span class="line"><span class="keyword">var</span> p = <span class="built_in">document</span>.querySelector(<span class="string">'p'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tag = event.currentTarget.tagName;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Tag: '</span> + tag); <span class="comment">// 没有任何输出</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">div.addEventListener(<span class="string">'click'</span>, callback, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> click = <span class="keyword">new</span> Event(<span class="string">'click'</span>);</span><br><span class="line">p.dispatchEvent(click);</span><br><span class="line">div.dispatchEvent(click);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面代码中，监听函数不会触发。如果写成<code>div.addEventListener('click', callback, true)</code>，才可以在“捕获阶段”监听到这个事件。</li>
+<li>另一方面，如果这个事件在div元素上触发: <code>div.dispatchEvent(click)</code>。因为这时div元素是事件的目标，不存在是否冒泡的问题，div元素总是会接收到事件，因此导致监听函数生效。</li>
+</ul>
+<h2 id="2-实例属性"><a class="header-anchor" href="#2-实例属性"></a>(2) 实例属性</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Event.bubbles</td>
+<td>布尔值</td>
+<td>false</td>
+<td>表示当前事件是否会冒泡</td>
+</tr>
+<tr>
+<td>Event.eventPhase</td>
+<td>整数常量</td>
+<td>0，事件目前没有发生。<br>1，事件目前处于捕获阶段。<br>2，事件到达目标节点。<br>3，事件处于冒泡阶段</td>
+<td>表示事件目前所处的阶段</td>
+</tr>
+<tr>
+<td>Event.cancelable</td>
+<td>布尔值</td>
+<td>false</td>
+<td>表示事件是否可以取消，当Event.cancelable属性为true时，调用<code>Event.preventDefault()</code>就可以取消这个事件该，属性只读。</td>
+</tr>
+<tr>
+<td>Event.cancelBubble</td>
+<td>布尔值</td>
+<td>false</td>
+<td>Event.stopPropagation() 以前的别名。</td>
+</tr>
+<tr>
+<td>Event.defaultPrevented</td>
+<td>布尔值</td>
+<td>false</td>
+<td>表示该事件是否调用过Event.preventDefault方法。该属性只读。</td>
+</tr>
+<tr>
+<td>Event.currentTarget</td>
+<td>dom节点对象</td>
+<td>null</td>
+<td>返回事件当前所在的节点，即正在执行的监听函数所绑定的那个节点。</td>
+</tr>
+<tr>
+<td>Event.target</td>
+<td>dom节点对象</td>
+<td>null</td>
+<td>返回原始触发事件的那个节点</td>
+</tr>
+<tr>
+<td>Event.type</td>
+<td>字符串</td>
+<td>生成事件的时候指定的值</td>
+<td>表示事件类型。该属性只读。</td>
+</tr>
+<tr>
+<td>Event.timeStamp</td>
+<td>数值</td>
+<td>返回一个毫秒时间戳</td>
+<td>表示事件发生的时间。它是相对于网页加载成功开始计算的。</td>
+</tr>
+<tr>
+<td>Event.isTrusted</td>
+<td>布尔值</td>
+<td>false</td>
+<td>表示该事件是否由真实的用户行为产生。</td>
+</tr>
+<tr>
+<td>Event.detail</td>
+<td>数值</td>
+<td>-</td>
+<td>属性只有浏览器的 UI （用户界面）事件才具有。该属性返回一个数值，表示事件的某种信息。具体含义与事件类型相关。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-实例方法"><a class="header-anchor" href="#3-实例方法"></a>(3) 实例方法</h2>
+<ul>
+<li><strong>Event.preventDefault：</strong> 方法取消浏览器对当前事件的默认行为。</li>
+<li><strong>stopPropagation：</strong> 方法阻止事件在 DOM 中继续传播，防止再触发定义在别的节点上的监听函数，但是不包括在当前节点上其他的事件监听函数。</li>
+<li><strong>Event.stopImmediatePropagation：</strong> 方法阻止同一个事件的其他监听函数被调用，不管监听函数定义在当前节点还是其他节点。也就是说，该方法阻止事件的传播，比Event.stopPropagation()更彻底。</li>
+<li><strong>Event.composedPath：</strong> 返回一个数组，成员是事件的最底层节点和依次冒泡经过的所有上层节点。</li>
+</ul>
+<h1>参考</h1>
+<p><em><a href="https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture" target="_blank" rel="noopener">https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture</a></em><br>
+<em><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Event</a></em><br>
+<em><a href="https://wangdoc.com/javascript/events/index.html" target="_blank" rel="noopener">https://wangdoc.com/javascript/events/index.html</a></em><br>
+<em><a href="https://zhuanlan.zhihu.com/p/26536815" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26536815</a></em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/13-设计模式/" rel="next" title="观察者模式与发布/订阅模式">
+                <i class="fa fa-chevron-left"></i> 观察者模式与发布/订阅模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/28/15-http协议/" rel="prev" title="互联网协议">
+                互联网协议 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="iaaiNG">
+            
+              <p class="site-author-name" itemprop="name">iaaiNG</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iaaiNG" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:136635217@gmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、注册事件监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-html-属性"><span class="nav-text">(1) HTML 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-dom-元素属性"><span class="nav-text">(2) DOM 元素属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-eventtarget-addeventlistener"><span class="nav-text">(3) EventTarget.addEventListener</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-小结"><span class="nav-text">(4) 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、事件的传播</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一个事件发生后-会在子元素和父元素之间传播-propagation-这种传播分成三个阶段"><span class="nav-text">(1) 一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-dom事件流在dom树中调度的事件的图形表示"><span class="nav-text">(2) DOM事件流在DOM树中调度的事件的图形表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">三、事件的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-利用事件对象的stoppropagation方法-阻止事件传播"><span class="nav-text">(1) 利用事件对象的stopPropagation方法，阻止事件传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-利用事件对象的stopimmediatepropagation方法-彻底取消事件-就像没发生一样"><span class="nav-text">(2) 利用事件对象的stopImmediatePropagation方法，彻底取消事件，就像没发生一样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事件代理优缺点"><span class="nav-text">(3) 事件代理优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">四、EventTarget 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-target-addeventlistener-type-listener-usecapture"><span class="nav-text">(1) target.addEventListener(type, listener[, useCapture]);</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#该方法接受三个参数"><span class="nav-text">该方法接受三个参数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于参数-有两个地方需要注意"><span class="nav-text">关于参数，有两个地方需要注意。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听函数内部的this-指向当前事件所在的那个对象"><span class="nav-text">监听函数内部的this，指向当前事件所在的那个对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-eventtarget-removeeventlistener"><span class="nav-text">(2) EventTarget.removeEventListener()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-eventtarget-dispatchevent"><span class="nav-text">(3) EventTarget.dispatchEvent()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dispatchevent方法的参数是一个event对象的实例"><span class="nav-text">dispatchEvent方法的参数是一个Event对象的实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">五、Event 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-event对象本身就是一个构造函数-可以用来生成新的实例"><span class="nav-text">(1) Event对象本身就是一个构造函数，可以用来生成新的实例。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#event构造函数接受两个参数"><span class="nav-text">Event构造函数接受两个参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-实例属性"><span class="nav-text">(2) 实例属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实例方法"><span class="nav-text">(3) 实例方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iaaiNG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 16.5k 字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

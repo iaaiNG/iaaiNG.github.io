@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if(!sessionStorage['password']){
+              sessionStorage['password'] = prompt('请输入文章密码')
+            }
+            if (sessionStorage['password'] !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://iaaing.github.io"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首先声明一点，前端开发的单元测试并不是在前端的开发过程中所必须的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有必要。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript自动化集成测试">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/12-前端测试/index.html">
+<meta property="og:site_name" content="iaaiNG的博客">
+<meta property="og:description" content="首先声明一点，前端开发的单元测试并不是在前端的开发过程中所必须的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有必要。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/12-前端测试/前端测试/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/12-前端测试/前端测试/2.png">
+<meta property="og:updated_time" content="2019-03-22T15:07:15.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript自动化集成测试">
+<meta name="twitter:description" content="首先声明一点，前端开发的单元测试并不是在前端的开发过程中所必须的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有必要。">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/22/12-前端测试/前端测试/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/12-前端测试/">
+
+
+
+
+
+  <title>Javascript自动化集成测试 | iaaiNG的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iaaiNG的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">死亡如风，常伴吾身！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/12-前端测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iaaiNG">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iaaiNG的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript自动化集成测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T16:58:31+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-22T23:07:15+08:00">
+                2019-03-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先声明一点，前端开发的单元测试并不是在前端的开发过程中所必须的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有必要。</p>
+<a id="more"></a>
+<h1>BDD和TDD</h1>
+<p><strong>BDD：</strong> Behavior Driven Development,行为驱动开发是一种敏捷软件开发的技术，它鼓励软件项目中的开发者，QA和非技术人员之间的协作。</p>
+<p><strong>TDD：</strong> Test-Driven Development,就是测试驱动开发，它是一种测试先于编写代码的思想用于指导软件开发，测试驱动开发是敏捷开发中的一项核心时间和技术，也是一种设计方法论，TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码</p>
+<h1>工具介绍</h1>
+<h2 id="测试框架"><a class="header-anchor" href="#测试框架"></a>测试框架</h2>
+<p>所谓&quot;测试框架&quot;，就是运行测试的工具。</p>
+<ul>
+<li><a href="https://mochajs.org/" target="_blank" rel="noopener"><strong>Mocha：</strong></a> 兼容不同风格断言库，支持测试用例分组，同步异步测试架构，生命周期钩子。mocha既可以基于 Node.js环境运行，也可以在浏览器环境运行。</li>
+<li><a href="https://jasmine.github.io/" target="_blank" rel="noopener"><strong>Jasmine：</strong></a> 略</li>
+</ul>
+<h2 id="断言库"><a class="header-anchor" href="#断言库"></a>断言库</h2>
+<p>Mocha本身不带断言库，所以必须先引入断言库。</p>
+<ul>
+<li><a href="https://nodejs.org/api/assert.html" target="_blank" rel="noopener"><strong>assert：</strong></a> TDD风格断言，是nodejs的一个断言测试模块，提供的api不是很多</li>
+<li><a href="http://shouldjs.github.io/" target="_blank" rel="noopener"><strong>should.js：</strong></a> BDD风格断言库，should相对于assert有比较丰富的api，并且其语法非常的语义化</li>
+<li><a href="https://github.com/mjackson/expect" target="_blank" rel="noopener"><strong>expect：</strong></a> BDD风格断言，语法和should.js类似</li>
+<li><a href="https://www.chaijs.com/" target="_blank" rel="noopener"><strong>chai：</strong></a> 支持BDD/TDD双模式，同时支持<a href="https://www.chaijs.com/api/bdd/" target="_blank" rel="noopener">should/expect</a>/<a href="https://www.chaijs.com/api/assert/" target="_blank" rel="noopener">assert</a>三种风格的断言库，还有强大的插件机制</li>
+</ul>
+<h2 id="测试工具"><a class="header-anchor" href="#测试工具"></a>测试工具</h2>
+<ul>
+<li><a href="http://karma-runner.github.io/latest/index.html" target="_blank" rel="noopener"><strong>karma：</strong></a> 能够模拟各种环境来运行你的测试代码，比如Chrome，Firefox，mobile等等。</li>
+</ul>
+<h2 id="持续集成-ci-服务"><a class="header-anchor" href="#持续集成-ci-服务"></a>持续集成（CI）服务</h2>
+<p>持续集成是指只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期后，再将新代码&quot;集成&quot;到主干。</p>
+<ul>
+<li><a href="https://docs.travis-ci.com/user/languages/javascript-with-nodejs/" target="_blank" rel="noopener"><strong>Travis CI：</strong></a> 可以绑定Github上面的项目，只要有新的代码，就会自动抓取。然后提供一个运行环境，执行测试，完成构建，还能部署到服务器。</li>
+</ul>
+<h1>Demo01 (mocha + chai)</h1>
+<h2 id="安装相关依赖"><a class="header-anchor" href="#安装相关依赖"></a>安装相关依赖</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i -g mocha</span><br><span class="line">cnpm i -Dmocha chai</span><br></pre></td></tr></table></figure>
+<h2 id="断言库-chai-的三种断言风格"><a class="header-anchor" href="#断言库-chai-的三种断言风格"></a>断言库 chai 的三种断言风格</h2>
+<ul>
+<li>
+<p>assert</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> assert = chai.assert;</span><br><span class="line">assert.typeOf(foo, <span class="string">'string'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>should</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chai.should();</span><br><span class="line">foo.should.be.a(<span class="string">'string'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>expect</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expect = chai.expect;</span><br><span class="line">expect(foo).to.be.a(<span class="string">'string'</span>); <span class="comment">// 判断字符串类型</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建test-test-js文件-代码："><a class="header-anchor" href="#创建test-test-js文件-代码："></a>创建test/test.js文件，代码：</h2>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> expect = <span class="built_in">require</span>(<span class="string">'chai'</span>).expect;  <span class="comment">// 引入</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123; <span class="keyword">return</span> x+y; &#125;;</span><br><span class="line">describe(<span class="string">'a add() function test'</span>,()=&gt;&#123;  <span class="comment">// describe 创建测试套件</span></span><br><span class="line">  it(<span class="string">'1+1=2'</span>,()=&gt;&#123;  <span class="comment">// it 创建测试用例</span></span><br><span class="line">    expect(add(<span class="number">1</span>,<span class="number">1</span>)).to.be.equal(<span class="number">2</span>);  <span class="comment">// expect 创建断言，判断相等</span></span><br><span class="line">  &#125;)</span><br><span class="line">  it(<span class="string">'-1+1=0'</span>,()=&gt;&#123; </span><br><span class="line">    expect(add(<span class="number">-1</span>,<span class="number">1</span>)).to.be.equal(<span class="number">0</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h2 id="运行测试："><a class="header-anchor" href="#运行测试："></a>运行测试：</h2>
+<ul>
+<li>终端：mocha test.js</li>
+<li>如果文件夹包含 test 目录，mocha 会自动测试 test下所有测试模块：mocha</li>
+<li>如果 test 目录下还有子目录，则递归测试：mocha --recursive</li>
+<li>查看所以的测试报告可用格式：mocha --reporters</li>
+<li>测试同时生成报告文档：mocha --recursive --reporter [doc]  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认报告格式</span></span><br><span class="line">a add() <span class="function"><span class="keyword">function</span> <span class="title">test</span></span></span><br><span class="line"><span class="function">  √ 1+1=2</span></span><br><span class="line"><span class="function">  √ -1+1=0</span></span><br><span class="line"><span class="function">  2 <span class="title">passing</span> (<span class="params"><span class="number">9</span>ms</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="更加友好的报告："><a class="header-anchor" href="#更加友好的报告："></a>更加友好的报告：</h2>
+<ul>
+<li>安装为全局依赖：cnpm i -g mochawesome</li>
+<li>安装到目录的开发依赖：cnpm i -D mochawesome；</li>
+<li>生成由 mochawesome 定义的报告格式：mocha --recursive --reporter mochawesome</li>
+</ul>
+<img src="/2019/03/22/12-前端测试/前端测试/1.png" alt="报告" style="height:400px">
+<h2 id="异步测试："><a class="header-anchor" href="#异步测试："></a>异步测试：</h2>
+<ul>
+<li>
+<p>模拟异步测试用例-代码：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> expcet = <span class="built_in">require</span>(<span class="string">"chai"</span>).expect;</span><br><span class="line">describe(<span class="string">"async test suite"</span>, () =&gt; &#123;</span><br><span class="line">  it(<span class="string">'模拟异步测试用例'</span>, done =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="literal">false</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b = <span class="literal">true</span>;</span><br><span class="line">    expcet(b).to.be.ok;</span><br><span class="line">    done()</span><br><span class="line">  &#125;</span><br><span class="line">  setTimeout(foo, <span class="number">3000</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行: mocha<br>
+报错：Error: Timeout of 2000ms exceeded…<br>
+原因：执行超时, mocha默认超时时间是2s<br>
+解决：mocha -t 5000  //延长超时时间</p>
+</blockquote>
+</li>
+</ul>
+<h1>Demo2 (mocha + should.js + karma + travis ci)</h1>
+<h2 id="安装相关依赖-v2"><a class="header-anchor" href="#安装相关依赖-v2"></a>安装相关依赖</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -D mocha</span><br><span class="line">npm install -D should</span><br><span class="line">npm install -D karma</span><br><span class="line">npm install -D karma-chrome-launcher</span><br><span class="line">npm install -D karma-mocha</span><br></pre></td></tr></table></figure>
+<h2 id="should-js-基本断言"><a class="header-anchor" href="#should-js-基本断言"></a>should.js 基本断言</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo.should.be();  </span><br><span class="line">bar.should.have();</span><br><span class="line">foo.should.bot.be();</span><br></pre></td></tr></table></figure>
+<h2 id="创建src-main-js文件-代码："><a class="header-anchor" href="#创建src-main-js文件-代码："></a>创建src/main.js文件，代码：</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建test-test-js文件-代码：-v2"><a class="header-anchor" href="#创建test-test-js文件-代码：-v2"></a>创建test/test.js文件，代码：</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'add'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  it(<span class="string">'8 + 8 = 16'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    add(<span class="number">8</span>, <span class="number">8</span>).should.equal(<span class="number">16</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="配置karma-karma-conf-js"><a class="header-anchor" href="#配置karma-karma-conf-js"></a>配置karma（karma.conf.js）</h2>
+<ul>
+<li>终端：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma init</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按提示操作生成karma.conf.js配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Which testing framework do you want to use ? (mocha)</span><br><span class="line">2. Do you want to use Require.js ? (no)</span><br><span class="line">3. Do you want to capture any browsers automatically ? (Chrome)</span><br><span class="line">4. What is the location of your source and test files ? (&apos;node_modules/should/should.js&apos;, &apos;test/**/*.js&apos;, &apos;src/**/*.js&apos;)</span><br><span class="line">5. Should any of the files included by the previous patterns be excluded ? ()</span><br><span class="line">6. Do you want Karma to watch all the files and run the tests on change ? (yes)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>值得注意的字段
+<ul>
+<li><strong>singleRun</strong> 如果值为 true, 则在浏览器运行完测试后会自动退出关闭浏览器窗口。</li>
+<li><strong>browsers</strong> 浏览器配置(可以配置多个浏览器); 如果浏览器无法启动需要进行相关浏览器的配置。</li>
+</ul>
+</li>
+</ul>
+<p><em>关于karma的更多配置：<a href="http://karma-runner.github.io/3.0/config/configuration-file.html" target="_blank" rel="noopener">http://karma-runner.github.io/3.0/config/configuration-file.html</a></em></p>
+<h2 id="运行测试"><a class="header-anchor" href="#运行测试"></a>运行测试</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma start</span><br></pre></td></tr></table></figure>
+<p>karma会运行chrome浏览器，并且输出测试结果</p>
+<h2 id="接入-travis-ci"><a class="header-anchor" href="#接入-travis-ci"></a>接入 travis ci</h2>
+<ul>
+<li>
+<p>修改 karma.conf.js 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">singleRun:!!process.env.TRAVIS  // travis环境测试完自动关闭浏览器</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置travis（.travis.yml）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">language: node_js</span><br><span class="line">node_js:</span><br><span class="line">  - 10</span><br><span class="line">before_install:</span><br><span class="line">  - npm install</span><br><span class="line">before_script:</span><br><span class="line">  - &quot;export DISPLAY=:99.0&quot;</span><br><span class="line">  - &quot;sh -e /etc/init.d/xvfb start&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>把项目Demo2上传到github</p>
+</li>
+<li>
+<p>通过GitHub登录 travis-ci 的官网：<a href="http://www.travis-ci.org/" target="_blank" rel="noopener">www.travis-ci.org/</a></p>
+</li>
+<li>
+<p>同步并激活监听github上的Demo2项目</p>
+</li>
+<li>
+<p>此时可以在travis上查看测试反馈</p>
+</li>
+</ul>
+<img src="/2019/03/22/12-前端测试/前端测试/2.png" height="200px">
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/11-NEW的事情/" rel="next" title="JavaScript中操作符new做了哪些事情">
+                <i class="fa fa-chevron-left"></i> JavaScript中操作符new做了哪些事情
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/25/13-设计模式/" rel="prev" title="观察者模式与发布/订阅模式">
+                观察者模式与发布/订阅模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="iaaiNG">
+            
+              <p class="site-author-name" itemprop="name">iaaiNG</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iaaiNG" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:136635217@gmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">BDD和TDD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">工具介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试框架"><span class="nav-text">测试框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言库"><span class="nav-text">断言库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试工具"><span class="nav-text">测试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持续集成-ci-服务"><span class="nav-text">持续集成（CI）服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Demo01 (mocha + chai)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装相关依赖"><span class="nav-text">安装相关依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言库-chai-的三种断言风格"><span class="nav-text">断言库 chai 的三种断言风格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建test-test-js文件-代码："><span class="nav-text">创建test/test.js文件，代码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行测试："><span class="nav-text">运行测试：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更加友好的报告："><span class="nav-text">更加友好的报告：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步测试："><span class="nav-text">异步测试：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Demo2 (mocha + should.js + karma + travis ci)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装相关依赖-v2"><span class="nav-text">安装相关依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#should-js-基本断言"><span class="nav-text">should.js 基本断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建src-main-js文件-代码："><span class="nav-text">创建src/main.js文件，代码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建test-test-js文件-代码：-v2"><span class="nav-text">创建test/test.js文件，代码：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置karma-karma-conf-js"><span class="nav-text">配置karma（karma.conf.js）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行测试"><span class="nav-text">运行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入-travis-ci"><span class="nav-text">接入 travis ci</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iaaiNG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 16.5k 字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

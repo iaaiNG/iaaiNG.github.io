@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if(!sessionStorage['password']){
+              sessionStorage['password'] = prompt('请输入文章密码')
+            }
+            if (sessionStorage['password'] !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://iaaing.github.io"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="createjs,easeljs,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CreateJS是基于HTML5开发的一套模块化的库和工具。 基于这些库，可以非常快捷地开发出基于HTML5的游戏、动画和交互应用。">
+<meta name="keywords" content="createjs,easeljs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Createjs 入门">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/05-Createjs入门/index.html">
+<meta property="og:site_name" content="iaaiNG的博客">
+<meta property="og:description" content="CreateJS是基于HTML5开发的一套模块化的库和工具。 基于这些库，可以非常快捷地开发出基于HTML5的游戏、动画和交互应用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/05-Createjs入门/createjs-learn/1.gif">
+<meta property="og:image" content="http://yoursite.com/2018/05/02/05-Createjs入门/createjs-learn/2.gif">
+<meta property="og:updated_time" content="2019-03-26T04:48:30.309Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Createjs 入门">
+<meta name="twitter:description" content="CreateJS是基于HTML5开发的一套模块化的库和工具。 基于这些库，可以非常快捷地开发出基于HTML5的游戏、动画和交互应用。">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/02/05-Createjs入门/createjs-learn/1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/02/05-Createjs入门/">
+
+
+
+
+
+  <title>Createjs 入门 | iaaiNG的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iaaiNG的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">死亡如风，常伴吾身！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/05-Createjs入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iaaiNG">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iaaiNG的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Createjs 入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T16:46:25+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-26T12:48:30+08:00">
+                2019-03-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CreateJS是基于HTML5开发的一套模块化的库和工具。<br>
+基于这些库，可以非常快捷地开发出基于HTML5的游戏、动画和交互应用。</p>
+<a id="more"></a>
+<p>CreateJS主要包含如下四个类库：</p>
+<ul>
+<li>EaselJS – 简化处理HTML5画布（核心）</li>
+<li>TweenJS – 用来帮助调整HTML5和Javascript属性</li>
+<li>SoundJS – 用来简化处理HTML5 audio</li>
+<li>PreloadJS – 帮助管理和协调加载中的一些资源</li>
+</ul>
+<p>Demo源码: <a href="https://github.com/iaaiNG/CreateJs" target="_blank" rel="noopener">https://github.com/iaaiNG/CreateJs</a></p>
+<h1>EaselJS</h1>
+<blockquote>
+<p>EaselJS 是一个JavaScript库,用来简单快捷的操作 HTML5 Canvas 标签。在创建H5游戏，生成艺术作品、处理其他高级图形化等工作中有着很友好的体验。</p>
+</blockquote>
+<h2 id="容器-stage-和-container"><a class="header-anchor" href="#容器-stage-和-container"></a>容器 Stage 和 Container</h2>
+<p><code>Stage</code>是root级容器的显示列表, 区别于<code>Container</code>, 都可以承载各种集成自<code>DisplayObject</code>的类如<code>Shape</code>和<code>Container</code>, 通过<code>update</code>方法将图形渲染在canvas上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\\ 创建舞台</span><br><span class="line"><span class="keyword">let</span> stage = <span class="keyword">new</span> createjs.Stage(<span class="string">"canvas"</span>)  </span><br><span class="line">\\ 创建Text实例</span><br><span class="line"><span class="keyword">let</span> text = <span class="keyword">new</span> createjs.Text(<span class="string">"hello easeljs"</span>,<span class="string">"36px Arial"</span>,<span class="string">"#777"</span>)</span><br><span class="line">\\ 将Text实例添加到舞台</span><br><span class="line">stage.addChild(text);</span><br><span class="line">\\ 渲染canvas</span><br><span class="line">stage.update()</span><br></pre></td></tr></table></figure>
+<h3 id="基础方法-displayobject"><a class="header-anchor" href="#基础方法-displayobject"></a>基础方法 — DisplayObject</h3>
+<table>
+<thead>
+<tr>
+<th>methods</th>
+<th>parameters type</th>
+<th>returns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addChild(child)</td>
+<td>DisplayObject</td>
+<td>(child) DisplayObject</td>
+<td>将DisplayObject实例添加到显示列表</td>
+</tr>
+<tr>
+<td>addChildAt(child, index)</td>
+<td>DisplayObject; Number</td>
+<td>(child) DisplayObject</td>
+<td>将DisplayObject实例添加到显示列表指定位置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="基础属性-displayobject"><a class="header-anchor" href="#基础属性-displayobject"></a>基础属性 — DisplayObject</h3>
+<table>
+<thead>
+<tr>
+<th>properties</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>children</td>
+<td>Array</td>
+<td>null</td>
+<td>容器显示列表的数组集合</td>
+</tr>
+<tr>
+<td>alpha</td>
+<td>Number</td>
+<td>1</td>
+<td>透明度0~1</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Number</td>
+<td>0</td>
+<td>容器绘制原点的x坐标</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Number</td>
+<td>0</td>
+<td>容器绘制原点的y坐标</td>
+</tr>
+</tbody>
+</table>
+<h2 id="绘制图形-shape-graphics"><a class="header-anchor" href="#绘制图形-shape-graphics"></a>绘制图形 Shape + Graphics</h2>
+<p>创建一个<code>Shape</code>实例, 一个可以承载各种图形的DisplayObject对象, 它的graphics属性是<code>Graphics</code>对象的暴露了所有图形方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> graphics = <span class="keyword">new</span> createjs.Graphics().beginFill(<span class="string">"#ff0000"</span>).drawRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> createjs.Shape(graphics);</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者可以利用Shape类上的graphics的原型方法, 渲染出与上面一样的效果</span></span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> createjs.Shape();</span><br><span class="line">shape.graphics.beginFill(<span class="string">"#ff0000"</span>).drawRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="图形方法-graphics"><a class="header-anchor" href="#图形方法-graphics"></a>图形方法 — Graphics</h3>
+<table>
+<thead>
+<tr>
+<th>methods</th>
+<th>parameters type</th>
+<th>returns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beginFill(color)</td>
+<td>string</td>
+<td>Graphics实例本身</td>
+<td>指定填充的颜色</td>
+</tr>
+<tr>
+<td>beginStroke(color)</td>
+<td>string</td>
+<td>Graphics实例本身</td>
+<td>指定描边的颜色</td>
+</tr>
+<tr>
+<td>endFill()</td>
+<td>\</td>
+<td>Graphics实例本身</td>
+<td>等同于 beginFill(null)</td>
+</tr>
+<tr>
+<td>endStroke()</td>
+<td>\</td>
+<td>Graphics实例本身</td>
+<td>等同于 beginStroke(null)</td>
+</tr>
+<tr>
+<td>drawRect (x, y, w, h)</td>
+<td>Number</td>
+<td>Graphics实例本身</td>
+<td>绘制矩形</td>
+</tr>
+<tr>
+<td>setStrokeStyle(thickness)</td>
+<td>Number</td>
+<td>Graphics实例本身</td>
+<td>设置描边宽度</td>
+</tr>
+<tr>
+<td>drawCircle (x, y, radius)</td>
+<td>Number</td>
+<td>Graphics实例本身</td>
+<td>绘制圆形</td>
+</tr>
+<tr>
+<td>lineTo(x, y)</td>
+<td>Number</td>
+<td>Graphics实例本身</td>
+<td>绘制路径</td>
+</tr>
+<tr>
+<td>moveTo(x, y)</td>
+<td>Number</td>
+<td>Graphics实例本身</td>
+<td>移动绘制原点到指定点</td>
+</tr>
+<tr>
+<td>closePath()</td>
+<td>\</td>
+<td>Graphics实例本身</td>
+<td>闭合当前路径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事件"><a class="header-anchor" href="#事件"></a>事件</h2>
+<p>事件绑定方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">displayObject.addEventListener(<span class="string">"click"</span>, handleClick);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// Click happened.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> listener = myBtn.on(<span class="string">"click"</span>, handleClick, <span class="literal">null</span>, <span class="literal">false</span>, &#123;<span class="attr">count</span>:<span class="number">3</span>&#125;);</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">evt, data</span>) </span>&#123;</span><br><span class="line">     data.count -= <span class="number">1</span>;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="keyword">this</span> == myBtn); <span class="comment">// true - scope defaults to the dispatcher</span></span><br><span class="line">     <span class="keyword">if</span> (data.count == <span class="number">0</span>) &#123;</span><br><span class="line">         alert(<span class="string">"clicked 3 times!"</span>);</span><br><span class="line">         myBtn.off(<span class="string">"click"</span>, listener);</span><br><span class="line">         <span class="comment">// 或者利用 evt.remove() 移除事件监听 </span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="事件方法-displayobject"><a class="header-anchor" href="#事件方法-displayobject"></a>事件方法 — DisplayObject</h3>
+<table>
+<thead>
+<tr>
+<th>methods</th>
+<th>parameters type</th>
+<th>returns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addEventListener(type, listener, [事件冒泡])</td>
+<td>String, Function\Object, Boolean</td>
+<td>listener</td>
+<td>添加指定事件监听</td>
+</tr>
+<tr>
+<td>removeEventListener(type, listener, [事件冒泡])</td>
+<td>String, Function\Object, Boolean</td>
+<td>\</td>
+<td>移除指定事件监听</td>
+</tr>
+<tr>
+<td>removeAllEventListeners ( [type] )</td>
+<td>String</td>
+<td>\</td>
+<td>移除所有事件或者指定类型的所有事件监听</td>
+</tr>
+<tr>
+<td>on(type, listener, [scope], [once=false], [data], [useCapture=false] )</td>
+<td>String, Function\Object ,Object, Boolean, params, Boolean</td>
+<td>listener</td>
+<td>添加事件监听快捷方式</td>
+</tr>
+<tr>
+<td>off(type, listener, [事件冒泡])</td>
+<td>String, Function\Object, Boolean</td>
+<td>\</td>
+<td>移除指定事件监听快捷方式</td>
+</tr>
+<tr>
+<td>hasEventListener(type)</td>
+<td>String</td>
+<td>false/true</td>
+<td>检查是否监听指定事件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="事件类型"><a class="header-anchor" href="#事件类型"></a>事件类型</h3>
+<table>
+<thead>
+<tr>
+<th>event</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>click</td>
+<td>单击</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>双击</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>按下</td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>离开目标范围(默认禁用, 需要设置enableMouseOver属性启用)</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>进入目标范围(默认禁用, 需要设置enableMouseOver属性启用)</td>
+</tr>
+<tr>
+<td>pressmove</td>
+<td>按下移动</td>
+</tr>
+<tr>
+<td>pressup</td>
+<td>松开按下</td>
+</tr>
+<tr>
+<td>tick</td>
+<td>舞台更新时触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="断续器-ticker-class"><a class="header-anchor" href="#断续器-ticker-class"></a>断续器 Ticker Class</h2>
+<p>Ticker是一个静态类，提供了好多静态方法和属性，不要去实例化它。</p>
+<h3 id="属性"><a class="header-anchor" href="#属性"></a>属性</h3>
+<table>
+<thead>
+<tr>
+<th>properties</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>framerate</td>
+<td>Number</td>
+<td>\</td>
+<td>帧率</td>
+</tr>
+<tr>
+<td>timingMode</td>
+<td>String</td>
+<td>Ticker.TIMEOUT</td>
+<td>指定计时API和模式(setTimeout\requestAnimationFrame)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>CreateJs 提供了两种渲染模式，一种是用 setTimeout ，一种是用 requestAnimationFrame ，默认是 setTimeout ，默认的帧数是 20 ，一般的话还没有什么区别，但是如果动画多的话，设置成 requestAnimationFrame 模式的话，就会感觉到动画如丝般的流畅。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createjs.Ticker.timingMode = createjs.Ticker.RAF;</span><br></pre></td></tr></table></figure>
+<h2 id="文本绘制-text-class"><a class="header-anchor" href="#文本绘制-text-class"></a>文本绘制 Text Class</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="keyword">new</span> createjs.Text(<span class="string">"Hello World"</span>, <span class="string">"20px Arial"</span>, <span class="string">"#ff7700"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="方法"><a class="header-anchor" href="#方法"></a>方法</h3>
+<table>
+<thead>
+<tr>
+<th>methods</th>
+<th>parameters type</th>
+<th>returns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getMeasuredHeight()</td>
+<td>\</td>
+<td>文本测量的高度值</td>
+<td>获取文本的近似高度</td>
+</tr>
+<tr>
+<td>getMeasuredWidth()</td>
+<td>\</td>
+<td>文本测量的宽度值</td>
+<td>获取文本的近似宽度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性-v2"><a class="header-anchor" href="#属性-v2"></a>属性</h3>
+<table>
+<thead>
+<tr>
+<th>properties</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>\</td>
+<td>字体颜色(ex. “#fff”)</td>
+</tr>
+<tr>
+<td>font</td>
+<td>String</td>
+<td>\</td>
+<td>字体样式(ex. “bold 36px Arial”)</td>
+</tr>
+<tr>
+<td>lineHeight</td>
+<td>Number</td>
+<td>\</td>
+<td>字体行高</td>
+</tr>
+<tr>
+<td>lineWidth</td>
+<td>Number</td>
+<td>\</td>
+<td>字体行宽</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>\</td>
+<td>文本内容</td>
+</tr>
+<tr>
+<td>textAlign</td>
+<td>String</td>
+<td>left</td>
+<td>文本水平对齐方式(right start end center)</td>
+</tr>
+<tr>
+<td>outline</td>
+<td>Number</td>
+<td>\</td>
+<td>指定描边粗细显示字体</td>
+</tr>
+</tbody>
+</table>
+<h2 id="图像绘制-bitmap-class"><a class="header-anchor" href="#图像绘制-bitmap-class"></a>图像绘制 Bitmap Class</h2>
+<p>图片, 视频, 乃至canvas, 都可以添加到Bitmap Class的显示列表上。<br>
+注意: 需要图片加载完成后, 再来更新舞台, 才能让图片显示。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bitmap = <span class="keyword">new</span> createjs.Bitmap(<span class="string">"imagePath.jpg"</span>);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image()</span><br><span class="line">img.src = <span class="string">"image.jpg"</span></span><br><span class="line"><span class="keyword">var</span> bitmap = <span class="keyword">new</span> createjs.Bitmap(img)</span><br></pre></td></tr></table></figure>
+<h2 id="影片剪辑-movieclip-class"><a class="header-anchor" href="#影片剪辑-movieclip-class"></a>影片剪辑 MovieClip Class</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stage = <span class="keyword">new</span> createjs.Stage(<span class="string">'canvas'</span>)</span><br><span class="line">createjs.Ticker.timingMode = createjs.Ticker.RAF;</span><br><span class="line">createjs.Ticker.addEventListener(<span class="string">'tick'</span>, stage)</span><br><span class="line"><span class="keyword">var</span> prop = &#123;</span><br><span class="line">    labels: &#123; <span class="attr">start</span>: <span class="number">50</span> &#125;, </span><br><span class="line">    loop: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> mc = <span class="keyword">new</span> createjs.MovieClip(prop)</span><br><span class="line">stage.addChild(mc)</span><br><span class="line"><span class="keyword">var</span> state1 = <span class="keyword">new</span> createjs.Shape(<span class="keyword">new</span> createjs.Graphics().beginFill(<span class="string">'#123'</span>).drawCircle(<span class="number">0</span>, <span class="number">100</span>, <span class="number">30</span>))</span><br><span class="line"><span class="keyword">var</span> state2 = <span class="keyword">new</span> createjs.Shape(<span class="keyword">new</span> createjs.Graphics().beginFill(<span class="string">'#555'</span>).drawCircle(<span class="number">0</span>, <span class="number">100</span>, <span class="number">30</span>))</span><br><span class="line">mc.timeline.addTween( createjs.Tween.get(state1).to(&#123; <span class="attr">x</span>: <span class="number">30</span> &#125;).to(&#123; <span class="attr">x</span>: <span class="number">370</span> &#125;, <span class="number">100</span>).to(&#123; <span class="attr">x</span>: <span class="number">30</span> &#125;, <span class="number">100</span>) )</span><br><span class="line">mc.timeline.addTween( createjs.Tween.get(state2).to(&#123; <span class="attr">x</span>: <span class="number">370</span> &#125;).to(&#123; <span class="attr">x</span>: <span class="number">30</span> &#125;, <span class="number">100</span>).to(&#123; <span class="attr">x</span>: <span class="number">370</span> &#125;, <span class="number">100</span>) )</span><br><span class="line">mc.gotoAndPlay(<span class="string">"start"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/02/05-Createjs入门/createjs-learn/1.gif" alt="movieclip"></p>
+<h2 id="精灵-sprite-class"><a class="header-anchor" href="#精灵-sprite-class"></a>精灵 Sprite Class</h2>
+<p>Sprite继承自DisplayObject, 可以显示来自SpriteSheet的实例，<br>
+SpriteSheet Class封装了相关的API和属性, 利用一帧帧图像拼凑的图, 来生成精灵动态图。<br>
+传递给SpriteSheet构造函数的数据定义:</p>
+<ul>
+<li>images: 图像url。</li>
+<li>frames: 单帧图像的位置。</li>
+<li>animations: 命名动画名的帧序列, 可选。</li>
+<li>framerate: 目标播放帧率FPS,可选。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stage = <span class="keyword">new</span> createjs.Stage(<span class="string">'canvas'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ss = <span class="keyword">new</span> createjs.SpriteSheet(&#123;</span><br><span class="line">    images:[<span class="string">"./img/spritesheet_grant.png"</span>],</span><br><span class="line">    frames:&#123;</span><br><span class="line">        height: <span class="number">292.5</span>,</span><br><span class="line">        width: <span class="number">165.75</span>,</span><br><span class="line">        count:<span class="number">64</span></span><br><span class="line">    &#125;,</span><br><span class="line">    animations:&#123;</span><br><span class="line">        run:[<span class="number">0</span>,<span class="number">25</span>,<span class="string">"jump"</span>,<span class="number">1.5</span>],</span><br><span class="line">        jump:[<span class="number">26</span>,<span class="number">63</span>,<span class="string">"run"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> createjs.Sprite(ss, <span class="string">"run"</span>)</span><br><span class="line"></span><br><span class="line">stage.addChild(s)</span><br><span class="line">createjs.Ticker.timingMode = createjs.Ticker.RAF;</span><br><span class="line">createjs.Ticker.addEventListener(<span class="string">'tick'</span>, stage)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/02/05-Createjs入门/createjs-learn/2.gif" alt="sprite"></p>
+<h2 id="dom元素-domelement-class"><a class="header-anchor" href="#dom元素-domelement-class"></a>Dom元素 DOMElement Class</h2>
+<p>DOMElement可以将HTMLElement转换成DisplayObject对象(不完整), 因此它可以被添加到舞台。然而, 它并没有被渲染到画布上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> domElement = <span class="keyword">new</span> createjs.DOMElement(htmlElement);</span><br><span class="line">\\ DOMElement实例不是完整的EaselJS显示对象，要从DOMElement获取鼠标事件，您必须向htmlElement添加处理程序。</span><br><span class="line">domElement.htmlElement.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"clicked"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>TweenJS</h1>
+<blockquote>
+<p>TweenJS Javascript库提供了一个简单但功能强大的tweening接口。它支持数值对象属性和CSS样式属性的渐变，并允许链式调用，以创建复杂的动画。</p>
+</blockquote>
+<h2 id="tweenjs-class"><a class="header-anchor" href="#tweenjs-class"></a>TweenJs Class</h2>
+<p>Tweens属性作用于单个目标，方法链式调用以创建复杂的动画序列<br>
+Example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">createjs.Tween.get(target)</span><br><span class="line">    .wait(<span class="number">500</span>)</span><br><span class="line">    .to(&#123;<span class="attr">alpha</span>:<span class="number">0</span>, <span class="attr">visible</span>:<span class="literal">false</span>&#125;, <span class="number">1000</span>)</span><br><span class="line">    .call(handleComplete);</span><br></pre></td></tr></table></figure>
+<h3 id="get-target-props"><a class="header-anchor" href="#get-target-props"></a>get(target, [props])</h3>
+<p>返回一个新的<code>tween</code>实例。这在功能上与使用<code>new Tween(…)</code>是相同的，但是使用TweenJS的链式语法看起来更整洁。<br>
+Parameters:</p>
+<ul>
+<li>target | Object<br>
+tween 目标</li>
+<li>[props] | Object  optional<br>
+应用于此实例的配置属性(例如{loop:-1, pause:true})。支持的常用可选属性如下所示:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>properties</th>
+<th>parameters type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[loop=0]</td>
+<td>Boolean  Number</td>
+<td>循环次数，设置为true，则永久循环</td>
+</tr>
+<tr>
+<td>[reversed=false]</td>
+<td>Boolean</td>
+<td>反向播放</td>
+</tr>
+<tr>
+<td>[timeScale=1]</td>
+<td>Number</td>
+<td>播放倍率</td>
+</tr>
+<tr>
+<td>[paused=false]</td>
+<td>Boolean</td>
+<td>暂停或取消暂停</td>
+</tr>
+<tr>
+<td>[onChange]</td>
+<td>Function</td>
+<td>添加change事件</td>
+</tr>
+<tr>
+<td>[override=false]</td>
+<td>Boolean optional</td>
+<td>当设置为true时, 移除目标现有Tween操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="to-props-duration-0-ease-linear"><a class="header-anchor" href="#to-props-duration-0-ease-linear"></a>to(props, [duration=0], [ease=“linear”])</h3>
+<p>改变目标指定属性值, 并在定义时间内渐变去显示。<br>
+Example</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createjs.Tween.get(target).to(&#123;<span class="attr">alpha</span>:<span class="number">0</span>, <span class="attr">visible</span>:<span class="literal">false</span>&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="方法-methods"><a class="header-anchor" href="#方法-methods"></a>方法 Methods</h3>
+<table>
+<thead>
+<tr>
+<th>methods</th>
+<th>parameters type</th>
+<th>returns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>label(name)</td>
+<td>String</td>
+<td>Tween实例</td>
+<td>添加一个标签, 可以供gotoAndPlay/gotoAndStop使用</td>
+</tr>
+<tr>
+<td>wait ｜Number</td>
+<td>Tween实例</td>
+<td>添加一个等待时间</td>
+<td></td>
+</tr>
+<tr>
+<td>pause</td>
+<td>Tween</td>
+<td>Tween实例</td>
+<td>添加暂停指定Tween的操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ease-class"><a class="header-anchor" href="#ease-class"></a>Ease Class</h2>
+<p>Ease类提供了一系列用于TweenJS的Ease函数。</p>
+<p>大多数关于Ease的方法可以直接作为easing函数传递:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createjs.Tween.get(target).to(&#123;<span class="attr">x</span>:<span class="number">100</span>&#125;, <span class="number">500</span>, createjs.Ease.linear);</span><br></pre></td></tr></table></figure>
+<p>有关Ease类型的概述，访问: <a href="https://www.createjs.com/#demos/tweenjs/tween_sparktable" target="_blank" rel="noopener">https://www.createjs.com/#demos/tweenjs/tween_sparktable</a></p>
+<h2 id="运动指南插件-motionguideplugin-class"><a class="header-anchor" href="#运动指南插件-motionguideplugin-class"></a>运动指南插件 MotionGuidePlugin Class</h2>
+<p>用于自定义对象的运动轨迹<br>
+要在TweenJS加载完成, 然后安装插件使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createjs.MotionGuidePlugin.install();</span><br></pre></td></tr></table></figure>
+<p>Example</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Using a Motion Guide 用法</span></span><br><span class="line">createjs.Tween.get(target).to(&#123;<span class="attr">guide</span>:&#123; <span class="attr">path</span>:[<span class="number">0</span>,<span class="number">0</span>, <span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>,<span class="number">200</span>, <span class="number">200</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>] &#125;&#125;,<span class="number">7000</span>);</span><br><span class="line"><span class="comment">// Visualizing the line 可视化路径</span></span><br><span class="line">graphics.moveTo(<span class="number">0</span>,<span class="number">0</span>).curveTo(<span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>,<span class="number">200</span>).curveTo(<span class="number">200</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/createjs/" rel="tag"># createjs</a>
+          
+            <a href="/tags/easeljs/" rel="tag"># easeljs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/04-H5之canvas/" rel="next" title="html5 之 canvas">
+                <i class="fa fa-chevron-left"></i> html5 之 canvas
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/02/06-vuex入门/" rel="prev" title="vuex 入门">
+                vuex 入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="iaaiNG">
+            
+              <p class="site-author-name" itemprop="name">iaaiNG</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iaaiNG" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:136635217@gmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">EaselJS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器-stage-和-container"><span class="nav-text">容器 Stage 和 Container</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础方法-displayobject"><span class="nav-text">基础方法 — DisplayObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础属性-displayobject"><span class="nav-text">基础属性 — DisplayObject</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制图形-shape-graphics"><span class="nav-text">绘制图形 Shape + Graphics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图形方法-graphics"><span class="nav-text">图形方法 — Graphics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件方法-displayobject"><span class="nav-text">事件方法 — DisplayObject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件类型"><span class="nav-text">事件类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断续器-ticker-class"><span class="nav-text">断续器 Ticker Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本绘制-text-class"><span class="nav-text">文本绘制 Text Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性-v2"><span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像绘制-bitmap-class"><span class="nav-text">图像绘制 Bitmap Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影片剪辑-movieclip-class"><span class="nav-text">影片剪辑 MovieClip Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精灵-sprite-class"><span class="nav-text">精灵 Sprite Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dom元素-domelement-class"><span class="nav-text">Dom元素 DOMElement Class</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">TweenJS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tweenjs-class"><span class="nav-text">TweenJs Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get-target-props"><span class="nav-text">get(target, [props])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#to-props-duration-0-ease-linear"><span class="nav-text">to(props, [duration=0], [ease=“linear”])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法-methods"><span class="nav-text">方法 Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ease-class"><span class="nav-text">Ease Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运动指南插件-motionguideplugin-class"><span class="nav-text">运动指南插件 MotionGuidePlugin Class</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iaaiNG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 16.5k 字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
