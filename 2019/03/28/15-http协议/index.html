@@ -102,12 +102,15 @@
 <meta property="og:site_name" content="iaaiNG的博客">
 <meta property="og:description" content="为了可以帮助理解：网络优化，服务器访问，ajax请求，http协议等一系列问题，我想需要了解一下互联网协议。 互联网的核心是一系列协议，总称为&amp;quot;互联网协议&amp;quot;（Internet Protocol Suite）。它们对电脑如何连接和组网，做出了详尽的规定。理解了这些协议，就理解了互联网的原理。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/15-http协议/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/15-http协议/2.png">
-<meta property="og:updated_time" content="2019-03-28T13:45:23.485Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/15-http协议/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/15-http协议/4.png">
+<meta property="og:updated_time" content="2019-03-28T14:26:41.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="互联网协议">
 <meta name="twitter:description" content="为了可以帮助理解：网络优化，服务器访问，ajax请求，http协议等一系列问题，我想需要了解一下互联网协议。 互联网的核心是一系列协议，总称为&amp;quot;互联网协议&amp;quot;（Internet Protocol Suite）。它们对电脑如何连接和组网，做出了详尽的规定。理解了这些协议，就理解了互联网的原理。">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/28/15-http协议/2.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/28/15-http协议/1.png">
 
 
 
@@ -363,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-28T21:45:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-28T22:26:41+08:00">
                 2019-03-28
               </time>
             
@@ -484,8 +487,8 @@
 <li>&quot;标头&quot;包含数据包的一些说明项，比如发送者、接受者、数据类型等等，长度固定为18字节。；</li>
 <li>&quot;数据&quot;则是数据包的具体内容，长度最短为46字节，最长为1500字节。</li>
 </ul>
+<img src="/2019/03/28/15-http协议/1.png" style="height:200px">
 <p>因此，整个&quot;帧&quot;最短为64字节，最长为1518字节。不然，就必须分割成多个帧进行发送。</p>
-<img src="/2019/03/28/15-http协议/2.png" style="height:200px">
 <h3 id="mac地址"><a class="header-anchor" href="#mac地址"></a>MAC地址</h3>
 <p>以太网协议规定，连入网络的所有设备，必须都具有&quot;网卡&quot;接口。数据包只能在网卡之间传输。网卡的地址，就是数据包的发送地址和接收地址，这叫做MAC地址。每块网卡的MAC地址是独一无二的。</p>
 <h3 id="广播"><a class="header-anchor" href="#广播"></a>广播</h3>
@@ -507,9 +510,10 @@
 <li>&quot;标头&quot;部分主要包括版本、长度、IP地址等信息；</li>
 <li>&quot;数据&quot;部分则是IP数据包的具体内容。</li>
 </ul>
+<img src="/2019/03/28/15-http协议/2.png" style="height:200px">
 <p>整个IP数据包的总长度最大为65,535字节。前面说过，以太网数据包的&quot;数据&quot;部分，最长只有1500字节。因此，如果IP数据包超过了1500字节，它就需要分割成几个以太网数据包，分开发送了。</p>
 <h3 id="arp协议"><a class="header-anchor" href="#arp协议"></a>ARP协议</h3>
-<p>因为IP数据包是放在以太网数据包里发送的，所以必须同时对方的MAC地址和IP地址。通常情况下，对方的IP地址是已知的（后文会解释），但是我们不知道它的MAC地址。<br>
+<p>因为IP数据包是放在以太网数据包里发送的，所以必须同时对方的MAC地址和IP地址。IP地址可以通过<strong>DNS协议</strong>获取，但是我们不知道它的MAC地址。<br>
 所以，我们需要一种机制，能够从IP地址得到MAC地址。分成以下两种情况。</p>
 <blockquote>
 <p>第一种情况，如果两台主机不在同一个子网络：</p>
@@ -531,8 +535,9 @@
 <ul>
 <li>&quot;标头&quot;部分主要定义了发出端口和接收端口。</li>
 <li>&quot;数据&quot;部分就是具体的内容。<br>
-UDP数据包，标头&quot;部分一共只有8个字节，总长度不超过65,535字节，正好放进一个IP数据包。</li>
+UDP数据包，标头&quot;部分一共只有8个字节，总长度不超过65,535字节，正好放进一个IP数据包。以整个以太网数据包现在变成了下面这样：</li>
 </ul>
+<img src="/2019/03/28/15-http协议/3.png" style="height:200px">
 <h2 id="4-tcp协议"><a class="header-anchor" href="#4-tcp协议"></a>(4) TCP协议</h2>
 <p><strong>UDP协议</strong>的优点是比较简单，容易实现，但是缺点是可靠性较差，一旦数据包发出，无法知道对方是否收到。<br>
 为此<strong>TCP协议</strong>就诞生了。这个协议非常复杂，但可以近似认为，它就是有确认机制的UDP协议，每发出一个数据包都要求确认。如果有一个数据包遗失，就收不到确认，发出方就知道有必要重发这个数据包了。<br>
@@ -542,7 +547,8 @@ TCP数据包和UDP数据包一样，都是内嵌在IP数据包的&quot;数据&qu
 <p>TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP等等。那么，必须有不同协议规定电子邮件、网页、FTP数据的格式，这些应用程序协议就构成了&quot;应用层&quot;。<br>
 应用程序收到&quot;传输层&quot;的数据，接下来就要进行解读。由于互联网是开放架构，数据来源五花八门，必须事先规定好格式，否则根本无法解读。</p>
 <h2 id="2-功能-v4"><a class="header-anchor" href="#2-功能-v4"></a>(2) 功能</h2>
-<p>&quot;应用层&quot;的作用，就是规定应用程序的数据格式。这是最高的一层，直接面对用户。它的数据就放在TCP数据包的&quot;数据&quot;部分。</p>
+<p>&quot;应用层&quot;的作用，就是规定应用程序的数据格式。这是最高的一层，直接面对用户。它的数据就放在TCP数据包的&quot;数据&quot;部分。因此，现在的以太网的数据包就变成下面这样。<br>
+<img src="/2019/03/28/15-http协议/4.png" style="height:200px"></p>
 <h1>补充：</h1>
 <h2 id="1-字节概念"><a class="header-anchor" href="#1-字节概念"></a>(1) 字节概念</h2>
 <p>字节也叫Byte，是计算机数据的基本存储单位。</p>
@@ -1263,5 +1269,5 @@ TCP数据包和UDP数据包一样，都是内嵌在IP数据包的&quot;数据&qu
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>
