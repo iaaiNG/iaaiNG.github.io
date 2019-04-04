@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="koa,">
+  <meta name="keywords" content="前端技术,">
 
 
 
@@ -95,18 +95,20 @@
 
 
 
-<meta name="description" content="Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。">
-<meta name="keywords" content="koa">
+<meta name="description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
+<meta name="keywords" content="前端技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="koa 入门">
-<meta property="og:url" content="http://yoursite.com/2018/09/09/09-Koa入门/index.html">
+<meta property="og:title" content="前端监控技术">
+<meta property="og:url" content="http://yoursite.com/2019/04/04/17-前端监控技术/index.html">
 <meta property="og:site_name" content="iaaiNG的博客">
-<meta property="og:description" content="Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。">
+<meta property="og:description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T04:48:59.937Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/04/17-前端监控技术/1.png">
+<meta property="og:updated_time" content="2019-04-04T04:30:12.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="koa 入门">
-<meta name="twitter:description" content="Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。">
+<meta name="twitter:title" content="前端监控技术">
+<meta name="twitter:description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/04/17-前端监控技术/1.png">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/09/09-Koa入门/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/04/17-前端监控技术/">
 
 
 
 
 
-  <title>koa 入门 | iaaiNG的博客</title>
+  <title>前端监控技术 | iaaiNG的博客</title>
   
 
 
@@ -317,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/09-Koa入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/04/17-前端监控技术/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="iaaiNG">
@@ -334,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">koa 入门</h1>
+          <h1 class="post-title" itemprop="name headline">前端监控技术</h1>
         
 
         <div class="post-meta">
@@ -346,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T16:46:25+08:00">
-                2018-09-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-04T10:07:51+08:00">
+                2019-04-04
               </time>
             
 
@@ -362,34 +364,12 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-26T12:48:59+08:00">
-                2019-03-26
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T12:30:12+08:00">
+                2019-04-04
               </time>
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端技术/" itemprop="url" rel="index">
-                    <span itemprop="name">后端技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -414,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  186
+                  1.6k
                 </span>
               
 
@@ -430,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -451,25 +431,92 @@
       
 
       
-        <p>Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。</p>
+        <p>生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。</p>
 <a id="more"></a>
-<h2 id="在-node-7-6-版本的-koa-中使用-es7-async-方法"><a class="header-anchor" href="#在-node-7-6-版本的-koa-中使用-es7-async-方法"></a>在 node &lt; 7.6 版本的 Koa 中使用 ES7 async 方法</h2>
-<ol>
-<li>安装shell</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa</span><br><span class="line">cnpm install babel babel-register babel-preset-env --save</span><br></pre></td></tr></table></figure>
+<h1>一、错误监控</h1>
+<h2 id="1-globaleventhandlers-onerror"><a class="header-anchor" href="#1-globaleventhandlers-onerror"></a>(1) GlobalEventHandlers.onerror</h2>
+<h3 id="window-onerror"><a class="header-anchor" href="#window-onerror"></a>window.onerror()</h3>
+<p><strong>机制：</strong> 当JavaScript运行时错误（包括语法错误）发生时，window会触发一个ErrorEvent接口的error事件，并执行window.onerror()。<br>
+<strong>语法：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该函数返回true，则阻止执行默认事件处理函数。</span></span><br><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">错误信息, 发生错误的脚本URL, 行号, 列号, Error对象</span>) </span>&#123; ... &#125;  </span><br><span class="line"><span class="comment">// event包含有关事件和错误的所有信息。</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; ... &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="element-onerror"><a class="header-anchor" href="#element-onerror"></a>element.onerror()</h3>
+<p><strong>机制：</strong> 当一项资源（如<code>&lt;img&gt;</code>或<code>&lt;script&gt;</code>）加载失败，加载资源的元素会触发一个Event接口的error事件，并执行element.onerror()。这些error事件不会向上冒泡到window。<br>
+<strong>语法：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-script-error"><a class="header-anchor" href="#2-script-error"></a>(2) “Script error.”</h2>
+<h3 id="概述"><a class="header-anchor" href="#概述"></a>概述</h3>
+<p>如果您之前已经完成了JavaScript <code>onerror</code>事件的任何工作，您可能会遇到 “Script error.” 错误。</p>
+<h3 id="原因"><a class="header-anchor" href="#原因"></a>原因</h3>
 <ul>
-<li>配置入口文件 app.js</li>
+<li><code>跨域</code>的JavaScript⽂文件通过<code>&lt;script&gt;</code>标签引⼊入，且内部发⽣生脚本错误。</li>
+<li>这是JavaScript出于安全原因，浏览器故意隐藏源自不同来源的脚本文件的错误。这是为了避免脚本无意中将潜在敏感信息泄露给它无法控制的onerror回调。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;babel-register&quot;)</span><br><span class="line">require(&apos;./server.js&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a class="header-anchor" href="#解决方案"></a>解决方案</h3>
 <ul>
-<li>配置 .babelrc 文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;presets&quot;: [</span><br><span class="line">  [&quot;env&quot;, &#123;</span><br><span class="line">    &quot;targets&quot;: &#123;</span><br><span class="line">      &quot;node&quot;: true</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">]&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>设置：CORS属性和HTTP标头</p>
 <ul>
-<li>Koa 入门，配置 server.js</li>
+<li>添加crossorigin =“anonymous”脚本属性</li>
+<li>添加HTTP标头：Access-Control-Allow-Origin: *</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var koa = require(&apos;koa&apos;);</span><br><span class="line">var app = new koa();</span><br><span class="line">app.use(async(ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.body = &apos;hello koa&apos;</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(8080);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用try / catch</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">message, url, line, column, error</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(message, url, line, column, error);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  foo(); </span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="keyword">throw</span> e; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过封装，使操作更简便</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapErrors</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// don't wrap function more than once</span></span><br><span class="line">  <span class="keyword">if</span> (!fn.__wrapped__) &#123;</span><br><span class="line">    fn.__wrapped__ = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        captureError(e); <span class="comment">// 上传错误报告</span></span><br><span class="line">        <span class="keyword">throw</span> e; <span class="comment">// 抛出错误</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fn.__wrapped__;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> invoke = wrapErrors(<span class="function"><span class="keyword">function</span>(<span class="params">obj, method, args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj[method].apply(<span class="keyword">this</span>, args);</span><br><span class="line">&#125;);</span><br><span class="line">invoke(<span class="built_in">Math</span>, <span class="string">'highest'</span>, [<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">// 不存在Math.highest方法</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1>性能监控 Performance</h1>
+<h2 id="1-什么是-performance"><a class="header-anchor" href="#1-什么是-performance"></a>(1) 什么是 Performance ?</h2>
+<p><code>Performance</code> 接口可以获取到当前页面中与性能相关的信息。该类型的对象可以通过调用只读属性 <code>Window.performance</code> 来获得。</p>
+<h2 id="2-属性"><a class="header-anchor" href="#2-属性"></a>(2) 属性</h2>
+<p><strong>Performance.navigation (只读)</strong><br>
+对象提供了在指定的时间段里发生的操作相关信息，包括页面是加载还是刷新、发生了多少次重定向等等。<br>
+<strong>Performance.timing (只读)</strong><br>
+获得实现该接口的一个对象 <code>PerformanceTiming</code>， 包含了当前页面中与时间相关的信息。<br>
+<strong>Performance.timeOrigin (只读)</strong><br>
+返回性能测量开始时的时间的高精度时间戳。</p>
+<h2 id="3-performancetiming"><a class="header-anchor" href="#3-performancetiming"></a>(3) PerformanceTiming</h2>
+<h3 id="performancetiming-整体结构图"><a class="header-anchor" href="#performancetiming-整体结构图"></a><code>PerformanceTiming</code> 整体结构图</h3>
+<img src="/2019/04/04/17-前端监控技术/1.png" style="height:700px">
+<h3 id="字段的含义"><a class="header-anchor" href="#字段的含义"></a>字段的含义</h3>
+<ul>
+<li><strong>startTime：</strong> 有些浏览器实现为<code>navigationStart</code>，代表浏览器开始unload前一个页面文档的开始时间节点。<a href="http://xn--baidu-5t6h530atze5wplm3ao9ad8imq1j.com" target="_blank" rel="noopener">比如当前正在浏览baidu.com</a>，在地址栏输入google.com并回车，浏览器的执行动作依次为：unload当前文档（<a href="http://xn--baidu-k97h.com" target="_blank" rel="noopener">即baidu.com</a>）-&gt;请求下一文档（<a href="http://xn--google-9l5j.com" target="_blank" rel="noopener">即google.com</a>）。</li>
+<li><strong>redirectStart和redirectEnd：</strong> 如果页面是由redirect而来，则redirectStart和redirectEnd分别代表redirect开始和结束的时间节点；</li>
+<li><strong>unloadEventStart和unloadEventEnd：</strong> 如果前一个文档和请求的文档是同一个域的，则unloadEventStart和unloadEventEnd分别代表浏览器unload前一个文档的开始和结束时间节点。否则两者都等于0；</li>
+<li><strong>fetchStart：</strong> 是指在浏览器发起任何请求之前的时间值。在fetchStart和domainLookupStart之间，浏览器会检查当前文档的缓存；</li>
+<li><strong>domainLookupStart和domainLookupEnd：</strong> 分别代表DNS查询的开始和结束时间节点。如果浏览器没有进行DNS查询（比如使用了cache），则两者的值都等于fetchStart；</li>
+<li><strong>connectStart和connectEnd：</strong> 分别代表TCP建立连接和连接成功的时间节点。如果浏览器没有进行TCP连接（比如使用持久化连接webscoket），则两者都等于domainLookupEnd；</li>
+<li><strong>secureConnectionStart：</strong> 可选。如果页面使用HTTPS，它的值是安全连接握手之前的时刻。如果该属性不可用，则返回undefined。如果该属性可用，但没有使用HTTPS，则返回0；</li>
+<li><strong>requestStart：</strong> 代表浏览器发起请求的时间节点，请求的方式可以是请求服务器、缓存、本地资源等；</li>
+<li><strong>responseStart和responseEnd：</strong> 分别代表浏览器收到从服务器端（或缓存、本地资源）响应回的第一个字节和最后一个字节数据的时刻；</li>
+<li><strong>domLoading：</strong> 代表浏览器开始解析html文档的时间节点。我们知道IE浏览器下的document有readyState属性，domLoading的值就等于readyState改变为loading的时间节点；</li>
+<li><strong>domInteractive：</strong> 代表浏览器解析html文档的状态为interactive时的时间节点。domInteractive并非DOMReady，它早于DOMReady触发，代表html文档解析完毕（即dom tree创建完成）但是内嵌资源（比如外链css、js等）还未加载的时间点；</li>
+<li><strong>domContentLoadedEventStart：</strong> 代表DOMContentLoaded事件触发的时间节点，页面文档完全加载并解析完毕之后,会触发DOMContentLoaded事件，HTML文档不会等待样式文件,图片文件,子框架页面的加载(load事件可以用来检测HTML页面是否完全加载完毕(fully-loaded))。</li>
+<li><strong>domContentLoadedEventEnd：</strong> 代表DOMContentLoaded事件完成的时间节点，此刻用户可以对页面进行操作，也就是<strong>jQuery</strong>中的domready时间；</li>
+<li><strong>domComplete：</strong> html文档完全解析完毕的时间节点；</li>
+<li><strong>loadEventStart和loadEventEnd：</strong> 分别代表onload事件触发和结束的时间节点</li>
+</ul>
+<h3 id="计算性能指标"><a class="header-anchor" href="#计算性能指标"></a>计算性能指标</h3>
+<ul>
+<li><strong>页面加载完成的时间</strong> = loadEventEnd - navigationStart;</li>
+<li><strong>重定向的时间</strong> = redirectEnd - redirectStart;</li>
+<li><strong>开始读取页面第一个字节的时间</strong> = responseStart - navigationStart; （这可以理解为用户拿到你的资源占用的时间，加异地机房了么，加CDN 处理了么？加带宽了么？加 CPU 运算速度了么？）</li>
+<li><strong>DNS查询耗时</strong> = domainLookupEnd - domainLookupStart;</li>
+<li><strong>TCP链接耗时</strong> = connectEnd - connectStart;</li>
+<li><strong>request请求耗时</strong> = responseEnd - responseStart;</li>
+<li><strong>解析dom树耗时</strong> = domComplete - domInteractive;</li>
+<li><strong>白屏时间</strong> = domloadng - fetchStart;</li>
+<li><strong>domready时间</strong> = domContentLoadedEventEnd - fetchStart;</li>
+<li><strong>onload时间</strong> = loadEventEnd - fetchStart;</li>
+</ul>
+<h1>参考</h1>
+<p><em>MDN web docs：<a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror</a></em><br>
+<em>什么是&quot;Script error&quot;?：<a href="https://blog.sentry.io/2016/05/17/what-is-script-error" target="_blank" rel="noopener">https://blog.sentry.io/2016/05/17/what-is-script-error</a></em><br>
+<em>使用window.onerror捕获并报告JavaScript错误：<a href="https://blog.sentry.io/2016/01/04/client-javascript-reporting-window-onerror.html" target="_blank" rel="noopener">https://blog.sentry.io/2016/01/04/client-javascript-reporting-window-onerror.html</a></em><br>
+<em><a href="https://www.cnblogs.com/sunshq/p/5312231.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunshq/p/5312231.html</a></em></p>
+
       
     </div>
     
@@ -486,7 +533,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/koa/" rel="tag"># koa</a>
+            <a href="/tags/前端技术/" rel="tag"># 前端技术</a>
           
         </div>
       
@@ -499,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/04/08-JS异步控制/" rel="next" title="javascript之异步控制">
-                <i class="fa fa-chevron-left"></i> javascript之异步控制
+              <a href="/2019/04/02/16-Web安全/" rel="next" title="Web安全">
+                <i class="fa fa-chevron-left"></i> Web安全
               </a>
             
           </div>
@@ -508,10 +555,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/09/10-二叉树/" rel="prev" title="排序二叉树">
-                排序二叉树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -659,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-node-7-6-版本的-koa-中使用-es7-async-方法"><span class="nav-text">在 node &lt; 7.6 版本的 Koa 中使用 ES7 async 方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、错误监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-globaleventhandlers-onerror"><span class="nav-text">(1) GlobalEventHandlers.onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-text">window.onerror()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-onerror"><span class="nav-text">element.onerror()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-script-error"><span class="nav-text">(2) “Script error.”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">性能监控 Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-performance"><span class="nav-text">(1) 什么是 Performance ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-属性"><span class="nav-text">(2) 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-performancetiming"><span class="nav-text">(3) PerformanceTiming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#performancetiming-整体结构图"><span class="nav-text">PerformanceTiming 整体结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的含义"><span class="nav-text">字段的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算性能指标"><span class="nav-text">计算性能指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

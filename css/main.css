@@ -1825,7 +1825,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #05f7c1;
+  background: #910e93;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2918,20 +2918,25 @@ hr {
   border-bottom: 1px solid #666;
 }
 h1 {
-  font-size: 32px;
-  border-bottom: 2px solid #ccc;
+  margin-top: 60px;
+  font-size: 40px;
+  background-image: linear-gradient(to right, #eee 0%, #ccc 100%);
+  padding-left: 20px;
 }
 @media (max-width: 767px) {
   h1 {
-    font-size: 26px;
+    font-size: 34px;
   }
 }
+h1.post-title {
+  padding-top: 5px;
+}
 h2 {
-  font-size: 26px;
+  font-size: 30px;
 }
 @media (max-width: 767px) {
   h2 {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 h3 {
