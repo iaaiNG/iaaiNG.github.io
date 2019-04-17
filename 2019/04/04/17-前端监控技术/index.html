@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="前端技术,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -96,7 +96,6 @@
 
 
 <meta name="description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
-<meta name="keywords" content="前端技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端监控技术">
 <meta property="og:url" content="http://yoursite.com/2019/04/04/17-前端监控技术/index.html">
@@ -104,7 +103,7 @@
 <meta property="og:description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/04/04/17-前端监控技术/1.png">
-<meta property="og:updated_time" content="2019-04-04T08:45:44.722Z">
+<meta property="og:updated_time" content="2019-04-04T15:38:55.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端监控技术">
 <meta name="twitter:description" content="生产环境面对的问题比测试环境要复杂得多，监控是一个重要的手段，作为一个优秀的前端开发，应该时刻关注网站的各方面数据。">
@@ -364,12 +363,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T16:45:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T23:38:55+08:00">
                 2019-04-04
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -467,7 +488,7 @@
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapErrors</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// don't wrap function more than once</span></span><br><span class="line">  <span class="keyword">if</span> (!fn.__wrapped__) &#123;</span><br><span class="line">    fn.__wrapped__ = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        captureError(e); <span class="comment">// 上传错误报告</span></span><br><span class="line">        <span class="keyword">throw</span> e; <span class="comment">// 抛出错误</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fn.__wrapped__;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> invoke = wrapErrors(<span class="function"><span class="keyword">function</span>(<span class="params">obj, method, args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj[method].apply(<span class="keyword">this</span>, args);</span><br><span class="line">&#125;);</span><br><span class="line">invoke(<span class="built_in">Math</span>, <span class="string">'highest'</span>, [<span class="number">1</span>, <span class="number">2</span>]); <span class="comment">// 不存在Math.highest方法</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>二、性能监控 Performance</h1>
+<h1>二、性能数据 Performance</h1>
 <h2 id="1-什么是-performance"><a class="header-anchor" href="#1-什么是-performance"></a>(1) 什么是 Performance ?</h2>
 <p><code>Performance</code> 接口可以获取到当前页面中与性能相关的信息。该类型的对象可以通过调用只读属性 <code>Window.performance</code> 来获得。</p>
 <h2 id="2-属性"><a class="header-anchor" href="#2-属性"></a>(2) 属性</h2>
@@ -511,6 +532,12 @@
 <li><strong>domready时间</strong> = domContentLoadedEventEnd - fetchStart;</li>
 <li><strong>onload时间</strong> = loadEventEnd - fetchStart;</li>
 </ul>
+<h1>三、数据上报</h1>
+<p>待补充</p>
+<h1>四、跟踪用户操作</h1>
+<p>待补充</p>
+<h1>五、利用数据 (数据沉淀)</h1>
+<p>待补充</p>
 <h1>参考</h1>
 <p><em>MDN web docs：<a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror</a></em><br>
 <em>什么是&quot;Script error&quot;?：<a href="https://blog.sentry.io/2016/05/17/what-is-script-error" target="_blank" rel="noopener">https://blog.sentry.io/2016/05/17/what-is-script-error</a></em><br>
@@ -531,12 +558,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/前端技术/" rel="tag"># 前端技术</a>
-          
-        </div>
-      
 
       
       
@@ -555,6 +576,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/04/18-JS模版引擎/" rel="prev" title="JS模版引擎">
+                JS模版引擎 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -633,7 +658,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -655,7 +680,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -702,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、错误监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-globaleventhandlers-onerror"><span class="nav-text">(1) GlobalEventHandlers.onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-text">window.onerror()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-onerror"><span class="nav-text">element.onerror()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-script-error"><span class="nav-text">(2) “Script error.”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、性能监控 Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-performance"><span class="nav-text">(1) 什么是 Performance ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-属性"><span class="nav-text">(2) 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-performancetiming"><span class="nav-text">(3) PerformanceTiming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#performancetiming-整体结构图"><span class="nav-text">PerformanceTiming 整体结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的含义"><span class="nav-text">字段的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算性能指标"><span class="nav-text">计算性能指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、错误监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-globaleventhandlers-onerror"><span class="nav-text">(1) GlobalEventHandlers.onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-text">window.onerror()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element-onerror"><span class="nav-text">element.onerror()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-script-error"><span class="nav-text">(2) “Script error.”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、性能数据 Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-performance"><span class="nav-text">(1) 什么是 Performance ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-属性"><span class="nav-text">(2) 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-performancetiming"><span class="nav-text">(3) PerformanceTiming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#performancetiming-整体结构图"><span class="nav-text">PerformanceTiming 整体结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的含义"><span class="nav-text">字段的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算性能指标"><span class="nav-text">计算性能指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">三、数据上报</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">四、跟踪用户操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">五、利用数据 (数据沉淀)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -751,7 +776,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 20.8k 字</span>
+  <span class="post-count">博客全站共 22.3k 字</span>
 </div>
 
 
