@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。">
+<meta name="description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack入门">
 <meta property="og:url" content="http://yoursite.com/2019/04/11/19-webpack入门/index.html">
 <meta property="og:site_name" content="iaaiNG的博客">
-<meta property="og:description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。">
+<meta property="og:description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T08:15:56.119Z">
+<meta property="og:updated_time" content="2019-04-20T08:49:45.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack入门">
-<meta name="twitter:description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。">
+<meta name="twitter:description" content="我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle">
 
 
 
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-11T16:15:56+08:00">
-                2019-04-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-20T16:49:45+08:00">
+                2019-04-20
               </time>
             
           </span>
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  684
+                  1.3k
                 </span>
               
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  5
                 </span>
               
             </div>
@@ -450,16 +450,19 @@
       
 
       
-        <p>我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。</p>
+        <p>我的理解：webpack 可以让项目可以分模块构建，增强模块独立性，按需求引入依赖，更适合大型项目。<br>
+本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。</p>
 <a id="more"></a>
-<h1>一、背景</h1>
-<h1>二、安装webpack</h1>
-<p>全局安装: <code>cnpm i webpack webpack-cli -g</code></p>
-<h1>三、配置webpack方式</h1>
-<h2 id="1-命令行配置"><a class="header-anchor" href="#1-命令行配置"></a>(1) 命令行配置</h2>
-<h3 id="在当前目录-将index-js打包成bundle-js"><a class="header-anchor" href="#在当前目录-将index-js打包成bundle-js"></a>在当前目录，将<code>index.js</code>打包成<code>bundle.js</code></h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webpack   index.js   bundle.js   --module-bind   &apos;css=style-loader!css-loader&apos; </span><br><span class="line">\\          入口        出口     指定模块打包方式    css文件先css-loader处理再style-loader处理</span><br></pre></td></tr></table></figure>
-<h3 id="常用webpack命令行命令"><a class="header-anchor" href="#常用webpack命令行命令"></a>常用webpack命令行命令</h3>
+<h1>一、安装与使用</h1>
+<h2 id="1-本地安装"><a class="header-anchor" href="#1-本地安装"></a>(1) 本地安装</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -S webpack</span><br></pre></td></tr></table></figure>
+<p>在 webpack 4+ 版本，还需要安装 CLI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -S webpack-cli</span><br></pre></td></tr></table></figure>
+<h2 id="2-使用"><a class="header-anchor" href="#2-使用"></a>(2) 使用</h2>
+<p>通过在 package.json 配置一个 scripts，会在本地 node_modules 目录中查找安装的 webpack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack --config webpack.config.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行 <code>npm start</code> 使用 webpack 工具。</p>
+<h3 id="webpack-常用指令"><a class="header-anchor" href="#webpack-常用指令"></a>webpack 常用指令</h3>
 <ul>
 <li><code>--config</code> 指定配置打包的文件</li>
 <li><code>--progess</code> 查看打包过程</li>
@@ -469,38 +472,61 @@
 <li><code>--watch</code> 监听目录，随时打包</li>
 <li><code>--module-bind 'css=style-loader!css-loader'</code> 指定模块打包方式</li>
 </ul>
-<h2 id="2-引用时添加配置"><a class="header-anchor" href="#2-引用时添加配置"></a>(2) 引用时添加配置</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\\ index.js</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"style-loader!css-loader!style.css"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="3-webpack-config-js配置"><a class="header-anchor" href="#3-webpack-config-js配置"></a>(3) webpack.config.js配置</h2>
-<p>webpack会自动按照webpack.config.js的配置进行打包</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>四、入口配置</h1>
-<h2 id="单个入口"><a class="header-anchor" href="#单个入口"></a>单个入口</h2>
+<h1>二、配置 webpack.config.js</h1>
+<h2 id="1-方式"><a class="header-anchor" href="#1-方式"></a>(1) 方式</h2>
+<ol>
+<li>终端</li>
+<li>Node.js (推荐)</li>
+</ol>
+<h2 id="2-node-js-环境下配置-webpack-config-js"><a class="header-anchor" href="#2-node-js-环境下配置-webpack-config-js"></a>(2) Node.js 环境下配置 webpack.config.js</h2>
+<p><em>参考：<a href="https://www.webpackjs.com/configuration/" target="_blank" rel="noopener">https://www.webpackjs.com/configuration/</a></em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 内置优化模式</span></span><br><span class="line">  mode: <span class="string">"production"</span>, <span class="comment">// "production" | "development" | "none"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 上下文</span></span><br><span class="line">  context: __dirname, <span class="comment">// string </span></span><br><span class="line">  <span class="comment">// webpack 的主目录，默认使用当前目录（绝对路径）</span></span><br><span class="line">  <span class="comment">// 用于从配置中解析 entry 和 module.rules.loader 选项</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构建目标 </span></span><br><span class="line">  target: <span class="string">"web"</span>, <span class="comment">// 默认"web"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 入口</span></span><br><span class="line">  entry: &#123; <span class="comment">// string | object | array</span></span><br><span class="line">    a: <span class="string">"./app/entry-a"</span>,</span><br><span class="line">    b: [<span class="string">"./app/entry-b1"</span>, <span class="string">"./app/entry-b2"</span>]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 出口</span></span><br><span class="line">  output: &#123; <span class="comment">// webpack 如何输出结果的相关选项</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// string 所有输出文件的目标路径，必须是绝对路径</span></span><br><span class="line">    filename: <span class="string">"[name].[chunkhash].bundle.js"</span>, <span class="comment">// string</span></span><br><span class="line">    publicPath: <span class="string">"https://cdn.example.com/"</span>, <span class="comment">// string 输出解析文件的目录，url 相对于 HTML 页面</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//模块配置</span></span><br><span class="line">  <span class="built_in">module</span>: &#123; <span class="comment">// 关于</span></span><br><span class="line">    rules: [ <span class="comment">// 模块规则</span></span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.jsx?$/</span>,  <span class="comment">// 推荐匹配文件名</span></span><br><span class="line">        include: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">"app"</span>)</span><br><span class="line">        ],</span><br><span class="line">        exclude: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">"app/demo-files"</span>)</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">// 这里是匹配条件，每个选项都接收一个正则表达式或字符串</span></span><br><span class="line">        <span class="comment">// test 和 include 具有相同的作用，都是必须匹配选项</span></span><br><span class="line">        <span class="comment">// 推荐在 include 和 exclude 中绝对路径数组</span></span><br><span class="line">        <span class="comment">// exclude 是必不匹配选项（优先于 test 和 include）</span></span><br><span class="line">        <span class="comment">// - 尽量避免 exclude，更倾向于使用 include</span></span><br><span class="line"></span><br><span class="line">        loader: <span class="string">"babel-loader"</span>,</span><br><span class="line">        <span class="comment">// 应该应用的 loader，它相对上下文解析</span></span><br><span class="line">        <span class="comment">// 为了更清晰，`-loader` 后缀在 webpack 2 中不再是可选的</span></span><br><span class="line"></span><br><span class="line">        options: &#123; <span class="comment">// loader 的可选项</span></span><br><span class="line">          presets: [<span class="string">"es2015"</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="string">"\.html$"</span>,</span><br><span class="line">        use: [ <span class="comment">// 应用多个 loader 和选项</span></span><br><span class="line">          <span class="string">"htmllint-loader"</span>,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"html-loader"</span>,</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    noParse: [ <span class="comment">// 不解析这里的模块</span></span><br><span class="line">      /special-library\.js$/</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 附加插件列表</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>三、入口 Entry</h1>
+<h2 id="1-单个入口"><a class="header-anchor" href="#1-单个入口"></a>(1) 单个入口</h2>
 <p>单个入口往往输出单个出口</p>
 <h3 id="传入字符串"><a class="header-anchor" href="#传入字符串"></a>传入字符串</h3>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">"./index.js"</span></span><br><span class="line">&#125;</span><br><span class="line">\\ 其实是下面方式的简写</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./index.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="传入数组"><a class="header-anchor" href="#传入数组"></a>传入数组</h3>
 <p>将数组里的入口模块打包成一个文件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: [<span class="string">"./index.js"</span>, <span class="string">"./app.js]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">\\ 其实是下面方式的简写</span></span><br><span class="line"><span class="string">module.exports = &#123;</span></span><br><span class="line"><span class="string">  entry: &#123;</span></span><br><span class="line"><span class="string">    main: ["</span>./index.js<span class="string">", "</span>./app.js]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多个入口"><a class="header-anchor" href="#多个入口"></a>多个入口</h2>
+<h2 id="2-多个入口"><a class="header-anchor" href="#2-多个入口"></a>(2) 多个入口</h2>
 <p>多个入口往往需要配置多个出口</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    page1: <span class="string">'./index.js'</span></span><br><span class="line">    page2: <span class="string">'./app.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>五、出口配置</h1>
-<h2 id="单个出口"><a class="header-anchor" href="#单个出口"></a>单个出口</h2>
+<h1>四、出口 Output</h1>
+<h2 id="1-单个出口"><a class="header-anchor" href="#1-单个出口"></a>(1) 单个出口</h2>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">"bundle.js"</span>  <span class="comment">// 文件名</span></span><br><span class="line">    path: __dirname <span class="comment">// 路径</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多个出口"><a class="header-anchor" href="#多个出口"></a>多个出口</h2>
+<h2 id="2-多个出口"><a class="header-anchor" href="#2-多个出口"></a>(2) 多个出口</h2>
 <ul>
 <li><code>[name]</code>: 使用入口名字</li>
 <li><code>[hash]</code>: 使用每次构建过程中，唯一的 hash 生成</li>
 <li><code>[chunkhash]</code>: 使用基于每个 chunk 内容的 hash</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">"[name]-[hash]-[chunkhash].js"</span>  <span class="comment">// 文件名</span></span><br><span class="line">    path: __dirname  <span class="comment">// 路径</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>六、插件配置</h1>
+<h1>五、加载器 Loader</h1>
+<p>webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。</p>
+<h2 id="1-配置-loader-方式"><a class="header-anchor" href="#1-配置-loader-方式"></a>(1) 配置 loader 方式</h2>
+<h3 id="配置：在-webpack-config-js-文件中指定-loader"><a class="header-anchor" href="#配置：在-webpack-config-js-文件中指定-loader"></a>配置：在 webpack.config.js 文件中指定 loader。</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: <span class="string">'css-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>, <span class="attr">use</span>: <span class="string">'ts-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="内联：在每个-import-语句中显式指定-loader"><a class="header-anchor" href="#内联：在每个-import-语句中显式指定-loader"></a>内联：在每个 import 语句中显式指定 loader。</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Styles <span class="keyword">from</span> <span class="string">'style-loader!css-loader?modules!./styles.css'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="cli：在-shell-命令中指定它们"><a class="header-anchor" href="#cli：在-shell-命令中指定它们"></a>CLI：在 shell 命令中指定它们。</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --module-bind jade-loader --module-bind &apos;css=style-loader!css-loader&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="2-css-loader"><a class="header-anchor" href="#2-css-loader"></a>(2) css-loader</h2>
+<p>css-laoder 可以加载 JS 中引入的 css 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import css from &apos;file.css&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="常用选项"><a class="header-anchor" href="#常用选项"></a>常用选项</h3>
+<ul>
+<li>importLoaders： 用于配置 css 文件中 @import 多少个样式。</li>
+</ul>
+<h2 id="3-style-loader"><a class="header-anchor" href="#3-style-loader"></a>(3) style-loader</h2>
+<p>把 css 以 <code>&lt;style&gt;</code> 标签的形式插入 dom</p>
+<h1>六、插件 Plugins</h1>
 <p>插件目的在于解决 loader 无法实现的其他事</p>
-<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> htmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>)  <span class="comment">// 引入插件</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> htmlWebpackPlugin(&#123;&#125;)  <span class="comment">// 调用插件</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="html-webpack-plugin-插件"><a class="header-anchor" href="#html-webpack-plugin-插件"></a>html-webpack-plugin 插件</h2>
-<p><strong>作用：</strong> 该插件将为你生成一个 HTML5 文件， 其中包括使用 script 标签的 body 中的所有 webpack 包。这对于在文件名中包含每次会随着编译而发生变化哈希的 webpack bundle 尤其有用。</p>
+<h2 id="1-html-webpack-plugin-插件"><a class="header-anchor" href="#1-html-webpack-plugin-插件"></a>(1) html-webpack-plugin 插件</h2>
+<h3 id="作用"><a class="header-anchor" href="#作用"></a>作用</h3>
+<p>该插件将为你生成一个 HTML5 文件， 其中包括使用 script 标签的 body 中的所有 webpack 包。这对于在文件名中包含每次会随着编译而发生变化哈希的 webpack bundle 尤其有用。</p>
+<h3 id="配置方式"><a class="header-anchor" href="#配置方式"></a>配置方式</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> htmlWebpackPlugin(&#123;&#125;)  <span class="comment">// 调用插件</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h3 id="常用配置"><a class="header-anchor" href="#常用配置"></a>常用配置</h3>
 <ul>
 <li><strong>filename</strong>: HTML文件名</li>
@@ -515,7 +541,7 @@
 <li>HMTML模板文件使用：<code>&lt;body&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/body&gt;</code></li>
 </ul>
 <h2 id="html-webpack-inline-source-plugin-插件"><a class="header-anchor" href="#html-webpack-inline-source-plugin-插件"></a>html-webpack-inline-source-plugin 插件</h2>
-<p>给 html-webpack-plugin 插件添加 inlineSource 属性，使 JS 和 CSS 内联插入HTML</p>
+<p>给 html-webpack-plugin 插件传入对象添加 inlineSource 属性，使 JS 和 CSS 内联插入HTML</p>
 
       
     </div>
@@ -696,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、安装webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">三、配置webpack方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-命令行配置"><span class="nav-text">(1) 命令行配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在当前目录-将index-js打包成bundle-js"><span class="nav-text">在当前目录，将index.js打包成bundle.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用webpack命令行命令"><span class="nav-text">常用webpack命令行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-引用时添加配置"><span class="nav-text">(2) 引用时添加配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-webpack-config-js配置"><span class="nav-text">(3) webpack.config.js配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">四、入口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个入口"><span class="nav-text">单个入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传入字符串"><span class="nav-text">传入字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传入数组"><span class="nav-text">传入数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个入口"><span class="nav-text">多个入口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">五、出口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个出口"><span class="nav-text">单个出口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个出口"><span class="nav-text">多个出口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">六、插件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置方法"><span class="nav-text">配置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-webpack-plugin-插件"><span class="nav-text">html-webpack-plugin 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用配置"><span class="nav-text">常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html模板传参"><span class="nav-text">HTML模板传参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-webpack-inline-source-plugin-插件"><span class="nav-text">html-webpack-inline-source-plugin 插件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-本地安装"><span class="nav-text">(1) 本地安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用"><span class="nav-text">(2) 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-常用指令"><span class="nav-text">webpack 常用指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、配置 webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-方式"><span class="nav-text">(1) 方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-node-js-环境下配置-webpack-config-js"><span class="nav-text">(2) Node.js 环境下配置 webpack.config.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">三、入口 Entry</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-单个入口"><span class="nav-text">(1) 单个入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传入字符串"><span class="nav-text">传入字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传入数组"><span class="nav-text">传入数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多个入口"><span class="nav-text">(2) 多个入口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">四、出口 Output</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-单个出口"><span class="nav-text">(1) 单个出口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多个出口"><span class="nav-text">(2) 多个出口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">五、加载器 Loader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置-loader-方式"><span class="nav-text">(1) 配置 loader 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置：在-webpack-config-js-文件中指定-loader"><span class="nav-text">配置：在 webpack.config.js 文件中指定 loader。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联：在每个-import-语句中显式指定-loader"><span class="nav-text">内联：在每个 import 语句中显式指定 loader。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cli：在-shell-命令中指定它们"><span class="nav-text">CLI：在 shell 命令中指定它们。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-css-loader"><span class="nav-text">(2) css-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用选项"><span class="nav-text">常用选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-style-loader"><span class="nav-text">(3) style-loader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">六、插件 Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-html-webpack-plugin-插件"><span class="nav-text">(1) html-webpack-plugin 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置方式"><span class="nav-text">配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用配置"><span class="nav-text">常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html模板传参"><span class="nav-text">HTML模板传参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-webpack-inline-source-plugin-插件"><span class="nav-text">html-webpack-inline-source-plugin 插件</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -745,7 +771,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 22.3k 字</span>
+  <span class="post-count">博客全站共 22.9k 字</span>
 </div>
 
 
