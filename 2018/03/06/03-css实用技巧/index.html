@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="iaaiNG的博客">
 <meta property="og:description" content="好记性不如烂笔头，能写下来的绝对不会记的&amp;lt;(￣︶￣)&amp;gt;，这里专门收录一些CSS常用的小技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T04:41:33.293Z">
+<meta property="og:updated_time" content="2019-06-28T16:26:10.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css 实用技巧">
 <meta name="twitter:description" content="好记性不如烂笔头，能写下来的绝对不会记的&amp;lt;(￣︶￣)&amp;gt;，这里专门收录一些CSS常用的小技巧">
@@ -362,8 +362,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-26T12:41:33+08:00">
-                2019-03-26
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-29T00:26:10+08:00">
+                2019-06-29
               </time>
             
           </span>
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  496
+                  586
                 </span>
               
 
@@ -453,12 +453,16 @@
       
         <p>好记性不如烂笔头，能写下来的绝对不会记的&lt;(￣︶￣)&gt;，这里专门收录一些CSS常用的小技巧</p>
 <a id="more"></a>
-<h1>文本溢出显示省略号</h1>
+<h1>一、文本溢出显示省略号</h1>
 <h2 id="单行"><a class="header-anchor" href="#单行"></a>单行</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">overflow:hidden;</span><br><span class="line">text-overflow:ellipsis;</span><br><span class="line">white-space:nowrap</span><br></pre></td></tr></table></figure>
+<h2 id="ex"><a class="header-anchor" href="#ex"></a>ex:</h2>
+<p style="width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">文本溢出显示省略号</p>
 <h2 id="多行"><a class="header-anchor" href="#多行"></a>多行</h2>
 <p>只有-webkit内核才有作用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br><span class="line">text-overflow: ellipsis;</span><br><span class="line">display: -webkit-box;</span><br><span class="line">-webkit-line-clamp: 2;</span><br><span class="line">-webkit-box-orient: vertical;</span><br></pre></td></tr></table></figure>
+<h2 id="ex-v2"><a class="header-anchor" href="#ex-v2"></a>ex:</h2>
+<p style="width:100px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">文本溢出显示省略号显示省略号</p>
 <table>
 <thead>
 <tr>
@@ -485,12 +489,27 @@
 </tr>
 </tbody>
 </table>
-<h1>实现文字两端对齐</h1>
+<h1>二、实现文字两端对齐</h1>
 <h2 id="写法一-缺点兼容性差"><a class="header-anchor" href="#写法一-缺点兼容性差"></a>写法一（缺点兼容性差）</h2>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">text-align</span>: justify;</span><br><span class="line">  <span class="attribute">text-align-last</span>: justify;</span><br><span class="line">  <span class="attribute">text-justify</span>: distribute;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="写法二-引入伪类"><a class="header-anchor" href="#写法二-引入伪类"></a>写法二（引入伪类）</h2>
 <p>text-align: justify; 属性可单独使用，前提是文本需要超过两行，不过最后一行不会两边对齐。因此如果是单行，可使用 hack 来“伪造”最后一行，以达到单行视觉上的两边对齐效果。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: justify;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>三、利用 border 实现一个三角形</h1>
+<h2 id="原理"><a class="header-anchor" href="#原理"></a>原理</h2>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 10<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">border</span>: 40<span class="selector-tag">px</span> <span class="selector-tag">solid</span>;</span><br><span class="line"><span class="selector-tag">border-color</span>: <span class="selector-tag">orange</span> <span class="selector-tag">blue</span> <span class="selector-tag">red</span> <span class="selector-tag">green</span>;</span><br></pre></td></tr></table></figure>
+<p>每个 border 的边可以看作等边梯形</p>
+<div style="width: 10px;
+height: 10px;
+border: 40px solid;
+border-color: orange blue red green;"></div>
+<h2 id="实现"><a class="header-anchor" href="#实现"></a>实现</h2>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 0;</span><br><span class="line"><span class="selector-tag">height</span>: 0;</span><br><span class="line"><span class="selector-tag">border</span>: 40<span class="selector-tag">px</span> <span class="selector-tag">solid</span>;</span><br><span class="line"><span class="selector-tag">border-color</span>: <span class="selector-tag">transparent</span> <span class="selector-tag">transparent</span> <span class="selector-tag">red</span>;</span><br></pre></td></tr></table></figure>
+<p>当内容尺寸为 0 时，成立</p>
+<div style="width: 0;
+height: 0;
+border: 40px solid;
+border-color: transparent red red transparent"></div>
 <h1>CSS 移动端适配</h1>
 <h2 id="利用手机淘宝-rem适配方案-https-github-com-amfe-lib-flexible"><a class="header-anchor" href="#利用手机淘宝-rem适配方案-https-github-com-amfe-lib-flexible"></a>利用手机淘宝，rem适配方案 <a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">https://github.com/amfe/lib-flexible</a></h2>
 <p>安装</p>
@@ -623,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -692,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">文本溢出显示省略号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单行"><span class="nav-text">单行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行"><span class="nav-text">多行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">实现文字两端对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法一-缺点兼容性差"><span class="nav-text">写法一（缺点兼容性差）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法二-引入伪类"><span class="nav-text">写法二（引入伪类）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">CSS 移动端适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用手机淘宝-rem适配方案-https-github-com-amfe-lib-flexible"><span class="nav-text">利用手机淘宝，rem适配方案 https://github.com/amfe/lib-flexible</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解rem和em"><span class="nav-text">了解rem和em</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、文本溢出显示省略号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单行"><span class="nav-text">单行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ex"><span class="nav-text">ex:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行"><span class="nav-text">多行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ex-v2"><span class="nav-text">ex:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、实现文字两端对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法一-缺点兼容性差"><span class="nav-text">写法一（缺点兼容性差）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法二-引入伪类"><span class="nav-text">写法二（引入伪类）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">三、利用 border 实现一个三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">CSS 移动端适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用手机淘宝-rem适配方案-https-github-com-amfe-lib-flexible"><span class="nav-text">利用手机淘宝，rem适配方案 https://github.com/amfe/lib-flexible</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解rem和em"><span class="nav-text">了解rem和em</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -741,7 +760,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 24.9k 字</span>
+  <span class="post-count">博客全站共 25.3k 字</span>
 </div>
 
 
