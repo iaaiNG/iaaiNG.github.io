@@ -1825,7 +1825,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #460596;
+  background: #ccff13;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2948,15 +2948,16 @@ h3 {
 }
 .img-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.img-container a {
+.img-container .fancybox {
   text-decoration: none;
   outline: none;
   border: none;
 }
-.img-container a img {
+.img-container .fancybox img {
   margin: 0 20px !important;
-  border: 1px solid #000;
-  height: 300px;
+  border: 1px solid #ddd;
+  width: 250px;
 }
