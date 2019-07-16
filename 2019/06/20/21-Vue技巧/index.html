@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="时隔快两月，终于想起写博客纪录，主要是996后没劲了，整里一些最近项目中使用 Vue 技巧的东西。">
+<meta name="description" content="时隔快两月，终于想起写博客纪录，整里一些最近项目中使用 Vue 技巧的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue技巧">
 <meta property="og:url" content="http://yoursite.com/2019/06/20/21-Vue技巧/index.html">
 <meta property="og:site_name" content="iaaiNG的博客">
-<meta property="og:description" content="时隔快两月，终于想起写博客纪录，主要是996后没劲了，整里一些最近项目中使用 Vue 技巧的东西。">
+<meta property="og:description" content="时隔快两月，终于想起写博客纪录，整里一些最近项目中使用 Vue 技巧的东西。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-23T16:21:11.341Z">
+<meta property="og:updated_time" content="2019-07-16T02:22:21.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue技巧">
-<meta name="twitter:description" content="时隔快两月，终于想起写博客纪录，主要是996后没劲了，整里一些最近项目中使用 Vue 技巧的东西。">
+<meta name="twitter:description" content="时隔快两月，终于想起写博客纪录，整里一些最近项目中使用 Vue 技巧的东西。">
 
 
 
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-24T00:21:11+08:00">
-                2019-06-24
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-16T10:22:21+08:00">
+                2019-07-16
               </time>
             
           </span>
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  328
+                  480
                 </span>
               
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -450,7 +450,7 @@
       
 
       
-        <p>时隔快两月，终于想起写博客纪录，主要是996后没劲了，整里一些最近项目中使用 Vue 技巧的东西。</p>
+        <p>时隔快两月，终于想起写博客纪录，整里一些最近项目中使用 Vue 技巧的东西。</p>
 <a id="more"></a>
 <h1>一、在组件上使用 v-model</h1>
 <h2 id="1-传统-v-model-原理"><a class="header-anchor" href="#1-传统-v-model-原理"></a>(1) 传统 v-model 原理</h2>
@@ -471,7 +471,18 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;scritp&gt;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    model: &#123;</span><br><span class="line">      prop: <span class="string">'checked'</span>,</span><br><span class="line">      event: <span class="string">'change'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    props: [<span class="string">'value'</span>], </span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/scritp&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-checkbox v-model=<span class="string">"lovingVue"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">base-checkbox</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>这里的 lovingVue 的值将会传入这个名为 checked 的 prop。并且可以触发 change 事件更新 checked。</p>
-<h1>.sync 修饰符</h1>
+<h1>二、.sync 修饰符</h1>
+<h2 id="1-原理"><a class="header-anchor" href="#1-原理"></a>(1) 原理</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">:foo.sync</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>会被扩展为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">:foo</span>=<span class="string">"bar"</span> @<span class="attr">update:foo</span>=<span class="string">"val =&gt; bar = val"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当子组件需要更新foo的值时，它需要显式地触发一个更新事件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:foo'</span>, newValue)</span><br></pre></td></tr></table></figure>
+<h2 id="2-运用"><a class="header-anchor" href="#2-运用"></a>(2) 运用</h2>
+<p>当子组件需要改变父组件的值的时候，结合 computed 的 get, set 设置，尤其有效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">:data.sync</span>=<span class="string">"data"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再 computed 定义 myData，便可以在子组件灵活使用 myData。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in child components</span></span><br><span class="line">&lt;scritp&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  prop:[<span class="string">'data'</span>],</span><br><span class="line">  computed:&#123;</span><br><span class="line">    myData:&#123;</span><br><span class="line">      <span class="keyword">get</span>()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span>(val)&#123;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'update:data'</span>, val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/scritp&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -505,6 +516,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/16/22-个人作品集/" rel="prev" title="个人作品集">
+                个人作品集 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -583,7 +598,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -652,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、在组件上使用 v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-传统-v-model-原理"><span class="nav-text">(1) 传统 v-model 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-当用在组件上时-v-model-则会这样："><span class="nav-text">(2) 当用在组件上时，v-model 则会这样：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实现-custom-input"><span class="nav-text">(3) 实现 custom-input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-改变-v-model-的默认行为"><span class="nav-text">(4) 改变 v-model 的默认行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">.sync 修饰符</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、在组件上使用 v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-传统-v-model-原理"><span class="nav-text">(1) 传统 v-model 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-当用在组件上时-v-model-则会这样："><span class="nav-text">(2) 当用在组件上时，v-model 则会这样：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实现-custom-input"><span class="nav-text">(3) 实现 custom-input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-改变-v-model-的默认行为"><span class="nav-text">(4) 改变 v-model 的默认行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">二、.sync 修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-原理"><span class="nav-text">(1) 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-运用"><span class="nav-text">(2) 运用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -701,7 +716,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 25.3k 字</span>
+  <span class="post-count">博客全站共 25.5k 字</span>
 </div>
 
 
