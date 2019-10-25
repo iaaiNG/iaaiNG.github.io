@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Git,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -95,22 +95,17 @@
 
 
 
-<meta name="description" content="Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别在于 Git 对待数据的方法。 概念上来区分，其它大部分系统以文件变更列表的方式存储信息。">
-<meta name="keywords" content="Git">
+<meta name="description" content="性能关乎用户的去留； 性能关乎利润的转化率提升； 性能关乎用户体验； 性能关乎用户成本（流量费）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git管理">
-<meta property="og:url" content="http://yoursite.com/2018/01/05/01-Git管理/index.html">
+<meta property="og:title" content="性能优化">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/23-性能优化/index.html">
 <meta property="og:site_name" content="iaaiNG的博客">
-<meta property="og:description" content="Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别在于 Git 对待数据的方法。 概念上来区分，其它大部分系统以文件变更列表的方式存储信息。">
+<meta property="og:description" content="性能关乎用户的去留； 性能关乎利润的转化率提升； 性能关乎用户体验； 性能关乎用户成本（流量费）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/01/05/01-Git管理/git-learn/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/01/05/01-Git管理/git-learn/2.png">
-<meta property="og:image" content="http://yoursite.com/2018/01/05/01-Git管理/git-learn/3.png">
-<meta property="og:updated_time" content="2019-03-26T04:48:07.241Z">
+<meta property="og:updated_time" content="2019-07-19T14:38:27.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git管理">
-<meta name="twitter:description" content="Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别在于 Git 对待数据的方法。 概念上来区分，其它大部分系统以文件变更列表的方式存储信息。">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/05/01-Git管理/git-learn/1.png">
+<meta name="twitter:title" content="性能优化">
+<meta name="twitter:description" content="性能关乎用户的去留； 性能关乎利润的转化率提升； 性能关乎用户体验； 性能关乎用户成本（流量费）。">
 
 
 
@@ -140,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/05/01-Git管理/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/19/23-性能优化/">
 
 
 
 
 
-  <title>Git管理 | iaaiNG的博客</title>
+  <title>性能优化 | iaaiNG的博客</title>
   
 
 
@@ -321,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/05/01-Git管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/23-性能优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="iaaiNG">
@@ -338,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git管理</h1>
+          <h1 class="post-title" itemprop="name headline">性能优化</h1>
         
 
         <div class="post-meta">
@@ -350,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T16:46:25+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T19:06:50+08:00">
+                2019-07-19
               </time>
             
 
@@ -366,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-26T12:48:07+08:00">
-                2019-03-26
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-19T22:38:27+08:00">
+                2019-07-19
               </time>
             
           </span>
@@ -385,8 +380,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/管理工具/" itemprop="url" rel="index">
-                    <span itemprop="name">管理工具</span>
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
                   </a>
                 </span>
 
@@ -418,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  936
+                  523
                 </span>
               
 
@@ -434,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -455,229 +450,32 @@
       
 
       
-        <p>Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别在于 Git 对待数据的方法。 概念上来区分，其它大部分系统以文件变更列表的方式存储信息。</p>
+        <ul>
+<li>性能关乎用户的去留；</li>
+<li>性能关乎利润的转化率提升；</li>
+<li>性能关乎用户体验；</li>
+<li>性能关乎用户成本（流量费）。</li>
+</ul>
 <a id="more"></a>
-<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<h1>一、各方面分析影响性能可能</h1>
+<h2 id="1-发送的资源"><a class="header-anchor" href="#1-发送的资源"></a>(1) 发送的资源</h2>
 <ul>
-<li>修改自己的用户名和邮箱地址</li>
+<li><strong>CSS</strong>: 是一种阻塞渲染的资源，CSS 框架的开销可能导致渲染延迟严重(为了用栅格布局，引用了整套bootstrap)。 视情况移除不必要的开销，以加速渲染。</li>
+<li><strong>JavaScript</strong>:  JavaScript 是在网页上提供的最昂贵的资源，此类资源必须经过下载、解析、编译和执行。因此尽量精简JS代码，避免杀猪用牛刀(jQuery能否用更小的zepto替代？zepto能否用原生querySelector替代？)。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;xxx&quot;</span><br><span class="line">git config --global user.email &quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="2-发送资源的方式"><a class="header-anchor" href="#2-发送资源的方式"></a>(2) 发送资源的方式</h2>
 <ul>
-<li>查看配置</li>
+<li>迁移至 HTTP/2。 HTTP/2 可解决 HTTP/1.1 的许多固有性能问题，例如并发请求限制和缺乏标头压缩。</li>
+<li>尽早下载关键资源。 rel=preload，允许在浏览器发现关键资源之前提前提取这些资源。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<h2 id="理论"><a class="header-anchor" href="#理论"></a>理论</h2>
-<p><img src="/2018/01/05/01-Git管理/git-learn/1.png" alt="three tree"></p>
+<h2 id="3-发送的数据量"><a class="header-anchor" href="#3-发送的数据量"></a>(3) 发送的数据量</h2>
 <ul>
-<li>
-<p>工作区域（<code>Working Directory</code>）就是你平时存放项目代码的地方。</p>
-</li>
-<li>
-<p>暂存区域（<code>Stage</code>）用于临时存放你的改动，事实上它只是一个文件，保存即将提交的文件列表信息。</p>
-</li>
-<li>
-<p>Git 仓库（<code>Repository</code>）就是安全存放数据的位置，这里边有你提交的所有版本的数据。其中，HEAD 指向最新放入仓库的版本。</p>
-</li>
-<li>
-<p>Git 管理的文件有三种状态：已修改（<code>modified</code>）、已暂存（<code>staged</code>）和已提交（<code>committed</code>）</p>
-</li>
+<li>压缩代码</li>
+<li>服务器配置为资源执行压缩，GZIP 是常用的选项。压缩不是解决性能问题的万能方法：某些隐式压缩的文件格式（例如 JPEG、PNG、GIF、WOFF 等）由于已经过压缩，则不会响应压缩操作。</li>
+<li><a href="https://developers.google.cn/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/#what-is-webp" target="_blank" rel="noopener">优化图像</a>以确保您的网站尽可能发送较少的图像数据。 由于图像在网页上每页负载中占据较大比例，因此图像优化成为提升性能的独特方式</li>
+<li>提供响应式图像。 向 <code>&lt;img&gt;</code> 元素添加 srcset 属性，以指定浏览器可以选择的一组图像。 在较复杂的情况下，您可以使用 <code>&lt;picture&gt;</code> 帮助浏览器选择最佳格式（例如选择 WebP 而不是 JPEG 或 PNG），或同时传送适合不同屏幕尺寸的不同格式的图像。</li>
+<li>使用视频而非动画 GIF。 动画 GIF 会占用大量空间。 同等画质的视频则小得多，通常低 80% 左右。</li>
 </ul>
-<h3 id="ex-将工作目录的文件放到-git-仓库"><a class="header-anchor" href="#ex-将工作目录的文件放到-git-仓库"></a>Ex: 将工作目录的文件放到 Git 仓库</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m [message]</span><br></pre></td></tr></table></figure>
-<p>or more simple</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am [message]</span><br></pre></td></tr></table></figure>
-<h2 id="查看信息"><a class="header-anchor" href="#查看信息"></a>查看信息</h2>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git status</td>
-<td>显示有变更的文件</td>
-</tr>
-<tr>
-<td>git log</td>
-<td>显示当前分支的版本历史</td>
-</tr>
-<tr>
-<td>git reflog</td>
-<td>显示当前分支的最近几次提交，包括已经被<code>reset</code>删除的</td>
-</tr>
-<tr>
-<td>git diff</td>
-<td>显示暂存区和工作区的代码差异</td>
-</tr>
-<tr>
-<td>git diff [快照ID] [快照ID]</td>
-<td>显示两个快照之间的差异</td>
-</tr>
-<tr>
-<td>git diff [快照ID]</td>
-<td>显示工作区和快照之间的差异</td>
-</tr>
-<tr>
-<td>git diff --cached [快照ID]</td>
-<td>显示暂存区和快照之间的差异</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>git log 可添加  --oneline  只一行显示  --graph 图形化显示 --all 显示所有分支</p>
-</blockquote>
-<h2 id="stage-与-working-directory-之间增加-删除文件"><a class="header-anchor" href="#stage-与-working-directory-之间增加-删除文件"></a>Stage 与 Working Directory 之间增加 / 删除文件</h2>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git add [file1] [file2] …</td>
-<td>添加指定文件到暂存区</td>
-</tr>
-<tr>
-<td>git rm [file1] [file2] …</td>
-<td>删除工作区文件，并且将这次删除放入暂存区</td>
-</tr>
-<tr>
-<td>git rm --cached [file]</td>
-<td>停止追踪指定文件，但该文件会保留在工作区</td>
-</tr>
-<tr>
-<td>git mv [file-original] [file-renamed]</td>
-<td>改名文件，并且将这个改名放入暂存区</td>
-</tr>
-</tbody>
-</table>
-<h2 id="代码提交"><a class="header-anchor" href="#代码提交"></a>代码提交</h2>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git commit -m [message]</td>
-<td>提交暂存区到仓库区</td>
-</tr>
-<tr>
-<td>git commit --amend -m [message]</td>
-<td>使用一次新的commit，替代上一次提交</td>
-</tr>
-</tbody>
-</table>
-<h2 id="撤销"><a class="header-anchor" href="#撤销"></a>撤销</h2>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git checkout – [file]</td>
-<td>恢复暂存区的指定文件到工作区</td>
-</tr>
-<tr>
-<td>git reset HEAD [file]</td>
-<td>清空<code>add</code>命令向暂存区提交的关于file文件的修改</td>
-</tr>
-<tr>
-<td>git reset HEAD~n</td>
-<td>移动<code>HEAD</code>的指向，将其指向上<code>n</code>个快照<code>HEAD</code>；然后再将该位置的快照回滚到暂存区域。</td>
-</tr>
-<tr>
-<td>git reset --soft HEAD~</td>
-<td>只移动<code>HEAD</code>的指向，但并不会将快照回滚到暂存区域</td>
-</tr>
-<tr>
-<td>git reset --hard HEAD~</td>
-<td>不仅移动<code>HEAD</code>的指向，将快照回滚动到暂存区域，还将暂存区域的文件还原到工作目录</td>
-</tr>
-<tr>
-<td>git reset xxxxxx</td>
-<td>回滚到指定快照</td>
-</tr>
-</tbody>
-</table>
-<h2 id="分支"><a class="header-anchor" href="#分支"></a>分支</h2>
-<h3 id="实际开发中的分支管理"><a class="header-anchor" href="#实际开发中的分支管理"></a>实际开发中的分支管理</h3>
-<p><img src="/2018/01/05/01-Git管理/git-learn/2.png" alt="分支管理"></p>
-<ul>
-<li>常设分支就主分支（master）和开发分支（develop）</li>
-<li>临时分支有功能分支（feature）、预发布分支（release）和维护分支（hotfix），用完之后应该及时删除</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git branch [branch-name]</td>
-<td>新建一个分支，但依然停留在当前分支</td>
-</tr>
-<tr>
-<td>git checkout [branch-name]</td>
-<td>切换到指定分支，并更新工作区</td>
-</tr>
-<tr>
-<td>git checkout -b [branch]</td>
-<td>新建一个分支，并切换到该分支</td>
-</tr>
-<tr>
-<td>git branch -d [branch-name]</td>
-<td>删除分支</td>
-</tr>
-<tr>
-<td>git checkout --orphan [branch]</td>
-<td>基于当前所在分支新建一个赤裸裸的分支，没有任何的提交历史</td>
-</tr>
-<tr>
-<td>git merge [branc</td>
-<td>合并指定分支到当前分支</td>
-</tr>
-</tbody>
-</table>
-<h2 id="远程同步"><a class="header-anchor" href="#远程同步"></a>远程同步</h2>
-<p><img src="/2018/01/05/01-Git管理/git-learn/3.png" alt="远程同步"></p>
-<table>
-<thead>
-<tr>
-<th>order</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git remote show [remote]</td>
-<td>显示某个远程仓库的信息</td>
-</tr>
-<tr>
-<td>git remote add [shortname] [url]</td>
-<td>增加一个新的远程仓库，并命名</td>
-</tr>
-<tr>
-<td>git pull [remote] [branch]</td>
-<td>取回远程仓库的变化，并与本地分支合并</td>
-</tr>
-<tr>
-<td>git push [remote] [branch]</td>
-<td>上传本地指定分支到远程仓库</td>
-</tr>
-</tbody>
-</table>
 
       
     </div>
@@ -693,12 +491,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-        </div>
-      
 
       
       
@@ -708,15 +500,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/16/22-个人作品集/" rel="next" title="个人作品集">
+                <i class="fa fa-chevron-left"></i> 个人作品集
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/07/02-CSS基础/" rel="prev" title="css基础">
-                css基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -864,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ex-将工作目录的文件放到-git-仓库"><span class="nav-text">Ex: 将工作目录的文件放到 Git 仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看信息"><span class="nav-text">查看信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stage-与-working-directory-之间增加-删除文件"><span class="nav-text">Stage 与 Working Directory 之间增加 / 删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交"><span class="nav-text">代码提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销"><span class="nav-text">撤销</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支"><span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际开发中的分支管理"><span class="nav-text">实际开发中的分支管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程同步"><span class="nav-text">远程同步</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一、各方面分析影响性能可能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-发送的资源"><span class="nav-text">(1) 发送的资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-发送资源的方式"><span class="nav-text">(2) 发送资源的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-发送的数据量"><span class="nav-text">(3) 发送的数据量</span></a></li></ol></li></ol></div>
             
 
           </div>
