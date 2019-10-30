@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="一、VUE 原理  Vue的原理可以简单地从上图示所得出  通过建立虚拟dom树document.createDocumentFragment(),方法创建虚拟dom树。 一旦被监测的数据改变，会通过Object.defineProperty定义的数据拦截，截取到数据的变化。 截取到的数据变化，从而通过订阅——发布者模式，触发Watcher（观察者）,从而改变虚拟dom的中的具体数据。 最后，通">
+<meta name="description" content="Vue的模式是m-v-vm模式，即（model-view-modelView），通过modelView作为中间层（即vm的实例），进行双向数据的绑定与变化。 而实现这种双向绑定的关键就在于： Object.defineProperty和订阅——发布者模式两点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现简单的VUE">
 <meta property="og:url" content="http://yoursite.com/2019/10/26/24-实现简单的VUE/index.html">
 <meta property="og:site_name" content="iaaiNG的博客">
-<meta property="og:description" content="一、VUE 原理  Vue的原理可以简单地从上图示所得出  通过建立虚拟dom树document.createDocumentFragment(),方法创建虚拟dom树。 一旦被监测的数据改变，会通过Object.defineProperty定义的数据拦截，截取到数据的变化。 截取到的数据变化，从而通过订阅——发布者模式，触发Watcher（观察者）,从而改变虚拟dom的中的具体数据。 最后，通">
+<meta property="og:description" content="Vue的模式是m-v-vm模式，即（model-view-modelView），通过modelView作为中间层（即vm的实例），进行双向数据的绑定与变化。 而实现这种双向绑定的关键就在于： Object.defineProperty和订阅——发布者模式两点。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/10/26/24-实现简单的VUE/data.png">
-<meta property="og:updated_time" content="2019-10-29T18:31:44.311Z">
+<meta property="og:updated_time" content="2019-10-30T08:52:00.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现简单的VUE">
-<meta name="twitter:description" content="一、VUE 原理  Vue的原理可以简单地从上图示所得出  通过建立虚拟dom树document.createDocumentFragment(),方法创建虚拟dom树。 一旦被监测的数据改变，会通过Object.defineProperty定义的数据拦截，截取到数据的变化。 截取到的数据变化，从而通过订阅——发布者模式，触发Watcher（观察者）,从而改变虚拟dom的中的具体数据。 最后，通">
+<meta name="twitter:description" content="Vue的模式是m-v-vm模式，即（model-view-modelView），通过modelView作为中间层（即vm的实例），进行双向数据的绑定与变化。 而实现这种双向绑定的关键就在于： Object.defineProperty和订阅——发布者模式两点。">
 <meta name="twitter:image" content="http://yoursite.com/2019/10/26/24-实现简单的VUE/data.png">
 
 
@@ -363,7 +363,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T02:31:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T16:52:00+08:00">
                 2019-10-30
               </time>
             
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  1.8k
                 </span>
               
 
@@ -430,7 +430,9 @@
       
 
       
-        <a id="more"></a>
+        <p>Vue的模式是m-v-vm模式，即（model-view-modelView），通过modelView作为中间层（即vm的实例），进行双向数据的绑定与变化。</p>
+<p>而实现这种双向绑定的关键就在于： Object.defineProperty和订阅——发布者模式两点。</p>
+<a id="more"></a>
 <h1>一、VUE 原理</h1>
 <img src="/2019/10/26/24-实现简单的VUE/data.png" style="height:600px">
 Vue的原理可以简单地从上图示所得出
@@ -521,10 +523,6 @@ Vue的原理可以简单地从上图示所得出
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/27/24-实现简单的VUE/v-model/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -602,7 +600,7 @@ Vue的原理可以简单地从上图示所得出
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +718,7 @@ Vue的原理可以简单地从上图示所得出
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 28.2k 字</span>
+  <span class="post-count">博客全站共 27.9k 字</span>
 </div>
 
 
