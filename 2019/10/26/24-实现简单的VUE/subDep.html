@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="c()">click1</button>
+  <button onclick="d()">click2</button>
+</body>
+<script>
+  function Dep() {
+    this.events = {}
+  }
+  Dep.prototype = {
+    add: function (event, fun) {
+      this.events[event] = this.events[event] || []
+      this.events[event].push(fun)
+    },
+    notify: function (event, arg) {
+      this.events[event].forEach(each => {
+        each(arg)
+      })
+    }
+  }
+  var dep = new Dep()
+
+  function logA() {
+    console.log("AAA");
+  }
+  dep.add('a', logA)
+  dep.add('b', (e) => {
+    console.log(e);
+  })
+
+  function c() {
+    dep.notify('a')
+  }
+
+  function d() {
+    dep.notify('b', 123)
+  }
+</script>
+
+</html>
